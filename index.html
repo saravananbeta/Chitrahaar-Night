@@ -452,39 +452,38 @@
     }, { once: true });
 
     // Handle mute button clicks safely after DOM loads
-    document.addEventListener('DOMContentLoaded', function() {
-      const muteBtn = document.getElementById('muteBtn');
-      if (muteBtn) {
-        muteBtn.addEventListener('click', function(e) {
-          e.stopPropagation();
-          if (!ytPlayer) return;
-
-          if (ytPlayer.isMuted()) {
-            ytPlayer.unMute();
-            ytPlayer.setVolume(100);
-          } else {
-            ytPlayer.mute();
-          }
-          updateMuteUI();
-        });
-      }
-    });
-
-    // Update button icon/text based on player state
-    function updateMuteUI() {
-      const muteIcon = document.getElementById('muteIcon');
-      const muteBtn = document.getElementById('muteBtn');
-      if (!ytPlayer || typeof ytPlayer.isMuted !== 'function' || !muteIcon) return;
+document.addEventListener('DOMContentLoaded', function() {
+  const muteBtn = document.getElementById('muteBtn');
+  if (muteBtn) {
+    muteBtn.addEventListener('click', function(e) {
+      e.stopPropagation(); // Prevents conflict with global page-click listener
+      if (!ytPlayer) return;
 
       if (ytPlayer.isMuted()) {
-        muteIcon.textContent = '🔇'; 
-        if (muteBtn) muteBtn.classList.add('is-muted');
+        ytPlayer.unMute();
+        ytPlayer.setVolume(100);
       } else {
-        muteIcon.textContent = '🔊'; 
-        if (muteBtn) muteBtn.classList.remove('is-muted');
+        ytPlayer.mute();
       }
-    }    
+      updateMuteUI();
+    });
+  }
+});
 
+// Update button icon based on actual player mute state
+function updateMuteUI() {
+  const muteIcon = document.getElementById('muteIcon');
+  const muteBtn = document.getElementById('muteBtn');
+  if (!ytPlayer || typeof ytPlayer.isMuted !== 'function' || !muteIcon) return;
+
+  if (ytPlayer.isMuted()) {
+    muteIcon.textContent = '🔇'; // Speaker with cross line (MUTED)
+    if (muteBtn) muteBtn.classList.add('is-muted');
+  } else {
+    muteIcon.textContent = '🔊'; // Speaker with sound waves (UNMUTED)
+    if (muteBtn) muteBtn.classList.remove('is-muted');
+  }
+}
     // Fix for soft refreshes: If YouTube script is already cached, call setup immediately
     if (window.YT && window.YT.Player) {
       onYouTubeIframeAPIReady();
