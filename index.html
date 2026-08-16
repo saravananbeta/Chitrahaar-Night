@@ -441,7 +441,22 @@
         }
       });
     }
+   // Swapped icon assignments to match visual state
+    function updateMuteUI() {
+      const muteIcon = document.getElementById('muteIcon');
+      const muteBtn = document.getElementById('muteBtn');
+      if (!ytPlayer || typeof ytPlayer.isMuted !== 'function' || !muteIcon) return;
 
+      // If muted -> Show crossed speaker (🔇)
+      // If playing/unmuted -> Show active speaker (🔊)
+      if (ytPlayer.isMuted()) {
+        muteIcon.textContent = '🔇'; 
+        if (muteBtn) muteBtn.classList.add('is-muted');
+      } else {
+        muteIcon.textContent = '🔊'; 
+        if (muteBtn) muteBtn.classList.remove('is-muted');
+      }
+    }
     // Automatically unmute audio on the user's very first click/tap anywhere on the page
     document.addEventListener('click', function unmuteAudio() {
       if (ytPlayer && typeof ytPlayer.unMute === 'function') {
