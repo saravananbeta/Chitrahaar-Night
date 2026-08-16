@@ -381,9 +381,10 @@
       "F9yWACZWm8s", "Of-V8ADNVdQ", "pW5bH9-t6JE", "D41sf9G1qRk", "2Nh-snz-Llg", "k82SZZaarSl0", "cIBP6cH5AMU"
     ];
 
-    let currentIndex = 0;
+    var randomTrackIndex = Math.floor(Math.random() * 100); /* New line added */
+    let currentIndex = randomTrackIndex;           /* This was = 0 */
     let ytPlayer;
-
+    
     function onYouTubeIframeAPIReady() {
       ytPlayer = new YT.Player('player', {
         height: '1',
