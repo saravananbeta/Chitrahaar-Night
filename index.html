@@ -595,17 +595,31 @@ if (window.YT && window.YT.Player) {
   }, 1000);
 }
 
-function nextTrack(btn) {
-  triggerButtonHighlight(btn);
-  currentIndex = (currentIndex + 1) % playlist.length;
-  loadCurrentTrack();
-}
+   // Add this helper function here
+    function triggerButtonHighlight(btn) {
+      if (!btn || !(btn instanceof HTMLElement)) return;
+      
+      btn.classList.add('active-highlight');
+      
+      setTimeout(function() {
+        btn.classList.remove('active-highlight');
+        btn.blur(); // Drops focus state on mobile screens
+      }, 1000);
+    }
 
-function prevTrack(btn) {
-  triggerButtonHighlight(btn);
-  currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
-  loadCurrentTrack();
-}
+    // Replace your existing nextTrack function
+    function nextTrack(btn) {
+      triggerButtonHighlight(btn);
+      currentIndex = (currentIndex + 1) % playlist.length;
+      loadCurrentTrack();
+    }
+
+    // Replace your existing prevTrack function
+    function prevTrack(btn) {
+      triggerButtonHighlight(btn);
+      currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+      loadCurrentTrack();
+    }
 
     function loadCurrentTrack() {
       if (ytPlayer && ytPlayer.loadVideoById) {
