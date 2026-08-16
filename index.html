@@ -655,6 +655,22 @@ function renderTrackChange() {
     ytPlayer.loadVideoById(playlist[currentIndex]);
   }
 }
+function jumpToTrack(val) {
+  let requestedNum = parseInt(val, 10);
+
+  // Validate the entered number against playlist range
+  if (!isNaN(requestedNum) && requestedNum >= 1 && requestedNum <= playlist.length) {
+    currentIndex = requestedNum - 1;
+    renderTrackChange();
+  } else {
+    // Reset back to current valid track if out of bounds or empty
+    const trackElem = document.getElementById('trackInput');
+    if (trackElem) {
+      trackElem.value = currentIndex + 1;
+    }
+  }
+}
+    
 // Automatically bind touch-blur handlers to all control buttons on mobile load
 document.addEventListener('DOMContentLoaded', function() {
   const buttons = document.querySelectorAll('.controls button');
