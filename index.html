@@ -114,23 +114,30 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.1s ease, color 0.1s ease;
-  
-  /* Disable native mobile touch overlays */
-  -webkit-tap-highlight-color: transparent;
+  transition: background 0.15s ease, color 0.15s ease;
+
+  /* Kill native OS tap callouts and focus rings */
+  -webkit-tap-highlight-color: transparent !important;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   user-select: none;
-  outline: none;
+  outline: none !important;
 }
 
-/* 1-second active highlight class (works on both mobile and desktop) */
+/* Force default dark style on focus/active touch states */
+.controls button:focus,
+.controls button:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 1-second explicit highlight class */
 .controls button.flash-active {
   background: #ffb703 !important;
   color: #000000 !important;
 }
 
-/* Apply hover ONLY to real desktop mice, preventing mobile sticky touch state */
+/* Desktop-only hover rule */
 @media (hover: hover) and (pointer: fine) {
   .controls button:hover {
     background: #ffb703;
