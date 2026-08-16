@@ -634,16 +634,25 @@ function prevTrack(e) {
 }
 
 function renderTrackChange() {
-  // 1. Play new video in YouTube Iframe API
-  if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
-    ytPlayer.loadVideoById(playlist[currentIndex]);
+  const currentNum = currentIndex + 1;
+
+  // 1. Update On-Screen Display First
+  // Finds trackInput whether it's an id="trackInput", class="trackInput", or name="trackInput"
+  const trackElem = document.getElementById('trackInput') 
+                 || document.querySelector('.trackInput') 
+                 || document.querySelector('[name="trackInput"]');
+
+  if (trackElem) {
+    if ('value' in trackElem) {
+      trackElem.value = currentNum;
+      trackElem.setAttribute('value', currentNum); // Forces mobile browsers to re-render input value
+    }
+    trackElem.textContent = currentNum;
   }
 
-  // 2. Update on-screen track text
-  // REPLACE 'trackDisplay' WITH YOUR ACTUAL HTML ELEMENT ID (e.g. 'trackNum', 'info', etc.)
-  const trackElem = document.getElementById('trackInput'); 
-  if (trackElem) {
-    trackElem.textContent = `Track ${currentIndex + 1} / ${playlist.length}`;
+  // 2. Load YouTube Track
+  if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
+    ytPlayer.loadVideoById(playlist[currentIndex]);
   }
 }
 // Automatically bind touch-blur handlers to all control buttons on mobile load
