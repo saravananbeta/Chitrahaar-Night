@@ -116,7 +116,7 @@
   justify-content: center;
   transition: background 0.15s ease, color 0.15s ease;
 
-  /* Kill native OS tap callouts and focus rings */
+  /* Kill native touch overlays */
   -webkit-tap-highlight-color: transparent !important;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -124,20 +124,23 @@
   outline: none !important;
 }
 
-/* Force default dark style on focus/active touch states */
+/* Force dark style on touch focus/active states so mobile OS cannot freeze yellow */
 .controls button:focus,
-.controls button:active {
+.controls button:active,
+.controls button:focus-visible {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
   outline: none !important;
   box-shadow: none !important;
 }
 
-/* 1-second explicit highlight class */
+/* 1-second explicit highlight class (overrides default dark state) */
 .controls button.flash-active {
   background: #ffb703 !important;
   color: #000000 !important;
 }
 
-/* Desktop-only hover rule */
+/* Hover rule restricted strictly to real desktop mice */
 @media (hover: hover) and (pointer: fine) {
   .controls button:hover {
     background: #ffb703;
