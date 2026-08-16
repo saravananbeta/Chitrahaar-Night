@@ -28,15 +28,16 @@
 
     /* Fullscreen Background Image */
    @media (max-width: 600px) {
-       .bg-image {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      z-index: 1;
-    }
+      .bg-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: contain; /* Shows 100% of the image on desktop without cropping */
+  object-position: center center;
+  z-index: 1;
+}
       
       /* ... your existing mobile styles ... */
     }
