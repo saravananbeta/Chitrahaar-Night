@@ -606,19 +606,27 @@ if (window.YT && window.YT.Player) {
 }
 
 function nextTrack(e) {
-  const btn = (e && e.currentTarget) ? e.currentTarget : (e instanceof HTMLElement ? e : null);
+  // Safely resolve button element from click event or direct reference
+  const btn = e ? (e.currentTarget || e.target || e) : null;
   triggerButtonHighlight(btn);
+
   currentIndex = (currentIndex + 1) % playlist.length;
-  loadCurrentTrack();
+
+  if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
+    ytPlayer.loadVideoById(playlist[currentIndex]);
+  }
 }
 
 function prevTrack(e) {
-  const btn = (e && e.currentTarget) ? e.currentTarget : (e instanceof HTMLElement ? e : null);
+  const btn = e ? (e.currentTarget || e.target || e) : null;
   triggerButtonHighlight(btn);
-  currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
-  loadCurrentTrack();
-}
 
+  currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+
+  if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
+    ytPlayer.loadVideoById(playlist[currentIndex]);
+  }
+}
 // Automatically bind touch-blur handlers to all control buttons on mobile load
 document.addEventListener('DOMContentLoaded', function() {
   const buttons = document.querySelectorAll('.controls button');
