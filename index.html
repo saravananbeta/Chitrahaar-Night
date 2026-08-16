@@ -602,32 +602,18 @@ if (window.YT && window.YT.Player) {
     function triggerButtonHighlight(btn) {
   if (!btn || !(btn instanceof HTMLElement)) return;
   
+  // Clear any existing active timer if tapped quickly again
+  if (btn._highlightTimer) {
+    clearTimeout(btn._highlightTimer);
+  }
+
   btn.classList.add('active-highlight');
   
-  setTimeout(function() {
+  btn._highlightTimer = setTimeout(function() {
     btn.classList.remove('active-highlight');
     btn.blur();
-    
-    // Force mobile webviews/browsers to drop sticky touch focus
-    if (document.activeElement) {
-      document.activeElement.blur();
-    }
-    btn.disabled = true;
-    btn.disabled = false;
   }, 1000);
 }
-
-   // Add this helper function here
-    function triggerButtonHighlight(btn) {
-      if (!btn || !(btn instanceof HTMLElement)) return;
-      
-      btn.classList.add('active-highlight');
-      
-      setTimeout(function() {
-        btn.classList.remove('active-highlight');
-        btn.blur(); // Drops focus state on mobile screens
-      }, 1000);
-    }
 
     // Replace your existing nextTrack function
     function nextTrack(btn) {
