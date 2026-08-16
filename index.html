@@ -103,6 +103,8 @@
     }
 
 .controls button {
+  appearance: none;
+  -webkit-appearance: none;
   background: rgba(255, 255, 255, 0.1);
   border: none;
   color: white;
@@ -116,28 +118,33 @@
   justify-content: center;
   transition: background 0.2s ease;
   
-  /* Mobile touch & selection fixes */
-  -webkit-tap-highlight-color: transparent;
+  /* Strip all mobile OS touch & highlight behavior */
+  -webkit-tap-highlight-color: transparent !important;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   user-select: none;
+  outline: none !important;
 }
 
+/* Force mobile devices to maintain default dark background on tap/focus */
 .controls button:focus,
-.controls button:active {
-  outline: none;
-  background: rgba(255, 255, 255, 0.1); /* Prevents sticky active state */
+.controls button:active,
+.controls button:focus-visible {
+  outline: none !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
 }
 
-/* Only apply standard hover on desktop devices with mouse pointers */
-@media (hover: hover) {
+/* Restrict hover exclusively to devices with a real mouse pointer */
+@media (hover: hover) and (pointer: fine) {
   .controls button:hover {
-    background: #ffb703;
-    color: #000;
+    background: #ffb703 !important;
+    color: #000000 !important;
   }
 }
 
-/* 1-second explicit highlight class */
+/* 1-second JS highlight override */
 .controls button.active-highlight {
   background: #ffb703 !important;
   color: #000000 !important;
