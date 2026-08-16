@@ -114,8 +114,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background 0.15s ease, color 0.15s ease;
 
-  /* Kill native mobile touch highlights and outlines */
+  /* Kill native iOS/Android touch highlights */
   -webkit-tap-highlight-color: transparent !important;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -123,31 +124,28 @@
   outline: none !important;
 }
 
-/* Force dark style on touch focus/active so touchscreens can't freeze yellow */
+/* Force dark style on touch focus, active, and native hover states */
 .controls button:focus,
-.controls button:active {
+.controls button:active,
+.controls button:hover {
   background: rgba(255, 255, 255, 0.1) !important;
   color: #ffffff !important;
   outline: none !important;
+  box-shadow: none !important;
 }
 
-/* Keyframe animation for a smooth 1-second pulse */
-@keyframes mobileFlash {
-  0% { background-color: #ffb703; color: #000000; }
-  70% { background-color: #ffb703; color: #000000; }
-  100% { background-color: rgba(255, 255, 255, 0.1); color: #ffffff; }
-}
-
-.controls button.flash-active {
-  animation: mobileFlash 1s ease-out forwards;
-}
-
-/* Hover style reserved strictly for desktop mouse navigation */
+/* Desktop-only hover (Will NOT trigger on touchscreens) */
 @media (hover: hover) and (pointer: fine) {
   .controls button:hover {
-    background: #ffb703;
-    color: #000000;
+    background: #ffb703 !important;
+    color: #000000 !important;
   }
+}
+
+/* Temporary 1-second JS class (The ONLY way a button turns yellow on mobile) */
+.controls button.is-pressed {
+  background: #ffb703 !important;
+  color: #000000 !important;
 }
     /* Minimalist Player Bar Overlay - Expanded Length */
     /* Base Player Bar (Desktop & Laptops) */
