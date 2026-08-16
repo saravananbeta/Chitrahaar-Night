@@ -600,17 +600,17 @@ if (window.YT && window.YT.Player) {
     function triggerButtonHighlight(btn) {
   if (!btn || !(btn instanceof HTMLElement)) return;
 
-  // Clear previous timer if tapped rapidly
-  if (btn._highlightTimer) {
-    clearTimeout(btn._highlightTimer);
-  }
-
+  // Restart animation cleanly if clicked repeatedly
+  btn.classList.remove('flash-active');
+  void btn.offsetWidth; // Trigger DOM reflow
   btn.classList.add('flash-active');
 
-  btn._highlightTimer = setTimeout(function() {
+  // Automatically clean up class when keyframe animation ends
+  btn.addEventListener('animationend', function handleAnimEnd() {
     btn.classList.remove('flash-active');
     btn.blur();
-  }, 1000);
+    btn.removeEventListener('animationend', handleAnimEnd);
+  });
 }
 
 function nextTrack(e) {
@@ -618,10 +618,7 @@ function nextTrack(e) {
   triggerButtonHighlight(btn);
 
   currentIndex = (currentIndex + 1) % playlist.length;
-
-  if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
-    ytPlayer.loadVideoById(playlist[currentIndex]);
-  }
+  updateTrackUI();
 }
 
 function prevTrack(e) {
@@ -629,9 +626,25 @@ function prevTrack(e) {
   triggerButtonHighlight(btn);
 
   currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+  updateTrackUI();
+}
 
+// Master function to handle both video playback and UI text update
+function updateTrackUI() {
+  // 1. Load the new track into YouTube player
   if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
     ytPlayer.loadVideoById(playlist[currentIndex]);
+  }
+
+  // 2. Update the track display text on screen
+  if (typeof updateTrackDisplay === 'function') {
+    updateTrackDisplay(); // Calls existing display updater if present
+  } else {
+    // Direct DOM fallback if you have a track number element (e.g., #trackNum or #trackInfo)
+    const trackElem = document.getElementById('trackNum') || document.getElementById('trackDisplay');
+    if (trackElem) {
+      trackElem.textContent = `Track ${currentIndex + 1} / ${playlist.length}`;
+    }
   }
 }
 // Automatically bind touch-blur handlers to all control buttons on mobile load
