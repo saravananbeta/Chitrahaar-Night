@@ -381,8 +381,9 @@
       "F9yWACZWm8s", "Of-V8ADNVdQ", "pW5bH9-t6JE", "D41sf9G1qRk", "2Nh-snz-Llg", "k82SZZaarSl0", "cIBP6cH5AMU"
     ];
 
-    var randomTrackIndex = Math.floor(Math.random() * 100); /* New line added */
-    let currentIndex = 0;           /* This was = randomTrackIndex */
+    /*
+    var randomTrackIndex = Math.floor(Math.random() * 100); 
+    let currentIndex = 0;           
     let ytPlayer;
     
     function onYouTubeIframeAPIReady() {
@@ -403,7 +404,41 @@
         }
       });
     }
+    */
 
+   // 1. Correctly set initial index to a random position within the array bounds
+var playlistLength = typeof playlist !== 'undefined' ? playlist.length : 100;
+let currentIndex = Math.floor(Math.random() * playlistLength);
+let ytPlayer;
+
+function onYouTubeIframeAPIReady() {
+  ytPlayer = new YT.Player('player', {
+    height: '1',
+    width: '1',
+    videoId: playlist[currentIndex], // Now uses the random index
+    playerVars: { 
+      'autoplay': 1,      // Set to 1 so it plays on load
+      'mute': 1,          // Required: Mute to bypass strict browser autoplay blocks on refresh
+      'controls': 0,
+      'playsinline': 1
+    },
+    events: {
+      'onReady': function(event) {
+        // Force cue/play imperatively in onReady to override browser iframe caching state
+        event.target.loadVideoById(playlist[currentIndex]);
+        updateUI(event);
+      },
+      'onStateChange': onPlayerStateChange,
+      'onError': onPlayerError
+    }
+  });
+}
+
+// 2. Fix for soft refreshes: If YouTube script is already cached, call setup immediately
+if (window.YT && window.YT.Player) {
+  onYouTubeIframeAPIReady();
+}
+    
     function updateUI() {
       const id = playlist[currentIndex];
       document.getElementById('trackThumb').src = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
