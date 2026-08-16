@@ -560,15 +560,27 @@ if (window.YT && window.YT.Player) {
       }
     }
 
-    function nextTrack() {
-      currentIndex = (currentIndex + 1) % playlist.length;
-      loadCurrentTrack();
-    }
+    function triggerButtonHighlight(btn) {
+  if (!btn || !(btn instanceof HTMLElement)) return;
+  btn.classList.add('active-highlight');
+  
+  setTimeout(function() {
+    btn.classList.remove('active-highlight');
+    btn.blur(); // Removes persistent browser focus/active state
+  }, 1000);
+}
 
-    function prevTrack() {
-      currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
-      loadCurrentTrack();
-    }
+function nextTrack(btn) {
+  triggerButtonHighlight(btn);
+  currentIndex = (currentIndex + 1) % playlist.length;
+  loadCurrentTrack();
+}
+
+function prevTrack(btn) {
+  triggerButtonHighlight(btn);
+  currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+  loadCurrentTrack();
+}
 
     function loadCurrentTrack() {
       if (ytPlayer && ytPlayer.loadVideoById) {
