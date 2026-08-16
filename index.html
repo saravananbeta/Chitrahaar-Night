@@ -103,11 +103,9 @@
     }
 
 .controls button {
-  appearance: none;
-  -webkit-appearance: none;
   background: rgba(255, 255, 255, 0.1);
   border: none;
-  color: white;
+  color: #ffffff;
   width: 26px;
   height: 26px;
   border-radius: 50%;
@@ -116,9 +114,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s ease;
   
-  /* Strip all mobile OS touch & highlight behavior */
+  /* Strip mobile touch highlights and text selection */
   -webkit-tap-highlight-color: transparent !important;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -126,28 +123,25 @@
   outline: none !important;
 }
 
-/* Force mobile devices to maintain default dark background on tap/focus */
+/* Force default dark background across mobile hover, focus, and active touch states */
+.controls button,
+.controls button:hover,
 .controls button:focus,
-.controls button:active,
-.controls button:focus-visible {
-  outline: none !important;
+.controls button:active {
   background: rgba(255, 255, 255, 0.1) !important;
   color: #ffffff !important;
-  box-shadow: none !important;
+  outline: none !important;
 }
 
-/* Restrict hover exclusively to devices with a real mouse pointer */
-@media (hover: hover) and (pointer: fine) {
-  .controls button:hover {
-    background: #ffb703 !important;
-    color: #000000 !important;
-  }
+/* Keyframe animation for a guaranteed 1-second highlight fade */
+@keyframes buttonFlash {
+  0% { background: #ffb703 !important; color: #000000 !important; }
+  80% { background: #ffb703 !important; color: #000000 !important; }
+  100% { background: rgba(255, 255, 255, 0.1) !important; color: #ffffff !important; }
 }
 
-/* 1-second JS highlight override */
-.controls button.active-highlight {
-  background: #ffb703 !important;
-  color: #000000 !important;
+.controls button.flash-active {
+  animation: buttonFlash 1s ease-out forwards;
 }
     /* Minimalist Player Bar Overlay - Expanded Length */
     /* Base Player Bar (Desktop & Laptops) */
