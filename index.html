@@ -391,7 +391,8 @@
         width: '1',
         videoId: playlist[currentIndex],
         playerVars: { 
-          'autoplay': 0, 
+          'autoplay': 1, // This was 0
+          'mute': 1 // Required by browsers to allow autoplay on page refresh
           'controls': 0,
           'playsinline': 1
         },
