@@ -114,34 +114,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background 0.1s ease, color 0.1s ease;
   
-  /* Strip mobile touch highlights and text selection */
-  -webkit-tap-highlight-color: transparent !important;
+  /* Disable native mobile touch overlays */
+  -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   user-select: none;
-  outline: none !important;
+  outline: none;
 }
 
-/* Force default dark background across mobile hover, focus, and active touch states */
-.controls button,
-.controls button:hover,
-.controls button:focus,
-.controls button:active {
-  background: rgba(255, 255, 255, 0.1) !important;
-  color: #ffffff !important;
-  outline: none !important;
-}
-
-/* Keyframe animation for a guaranteed 1-second highlight fade */
-@keyframes buttonFlash {
-  0% { background: #ffb703 !important; color: #000000 !important; }
-  80% { background: #ffb703 !important; color: #000000 !important; }
-  100% { background: rgba(255, 255, 255, 0.1) !important; color: #ffffff !important; }
-}
-
+/* 1-second active highlight class (works on both mobile and desktop) */
 .controls button.flash-active {
-  animation: buttonFlash 1s ease-out forwards;
+  background: #ffb703 !important;
+  color: #000000 !important;
+}
+
+/* Apply hover ONLY to real desktop mice, preventing mobile sticky touch state */
+@media (hover: hover) and (pointer: fine) {
+  .controls button:hover {
+    background: #ffb703;
+    color: #000000;
+  }
 }
     /* Minimalist Player Bar Overlay - Expanded Length */
     /* Base Player Bar (Desktop & Laptops) */
