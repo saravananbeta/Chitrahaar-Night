@@ -175,7 +175,10 @@
     .track-input[type=number] {
       -moz-appearance: textfield;
     }
-
+  <button id="muteBtn" class="mute-btn" aria-label="Toggle Sound">
+  <!-- Default state: Muted Icon -->
+  <span id="muteIcon">🔇</span>
+  </button>
     .controls {
       display: flex;
       align-items: center;
@@ -349,11 +352,6 @@
 
   <!-- Offscreen YouTube Iframe Engine for Audio Only -->
   <div id="player" class="audio-engine"></div>
-
-  <button id="muteBtn" class="mute-btn" aria-label="Toggle Sound">
-  <!-- Default state: Muted Icon -->
-  <span id="muteIcon">🔇</span>
-  </button>
 
   <script src="https://www.youtube.com/iframe_api"></script>
   <script>
