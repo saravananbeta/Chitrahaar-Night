@@ -78,26 +78,36 @@
     }
 
     /* Minimalist Player Bar Overlay - Expanded Length */
-    .player-bar {
-      position: fixed;
-      bottom: 25px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      background: rgba(10, 10, 12, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      padding: 8px 22px;
-      border-radius: 30px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
-      white-space: nowrap;
-      max-width: 90vw;
-    }
+    /* Base Player Bar (Desktop & Laptops) */
+.player-bar {
+  position: fixed;
+  bottom: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 16px;                     /* Increased spacing between buttons */
+  padding: 12px 28px;            /* Roomier padding */
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  transform-origin: bottom center;
+}
 
+/* Enlarge song title text & container on desktop */
+.track-info {
+  max-width: 220px;              /* Gives song title more room */
+  font-size: 1rem;
+}
+
+/* Enlarge volume slider on desktop */
+.volume-container input[type="range"] {
+  width: 80px;
+}
     /* Thumbnail inside the player */
     .thumb {
       width: 36px;
