@@ -587,11 +587,19 @@ if (window.YT && window.YT.Player) {
 
     function triggerButtonHighlight(btn) {
   if (!btn || !(btn instanceof HTMLElement)) return;
+  
   btn.classList.add('active-highlight');
   
   setTimeout(function() {
     btn.classList.remove('active-highlight');
-    btn.blur(); // Removes persistent browser focus/active state
+    btn.blur();
+    
+    // Force mobile webviews/browsers to drop sticky touch focus
+    if (document.activeElement) {
+      document.activeElement.blur();
+    }
+    btn.disabled = true;
+    btn.disabled = false;
   }, 1000);
 }
 
