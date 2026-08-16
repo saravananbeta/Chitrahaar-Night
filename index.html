@@ -27,14 +27,13 @@
     }
 
     /* Fullscreen Background Image */
-    .bg-image {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      z-index: 1;
+   @media (max-width: 600px) {
+      .bg-image {
+        /* Options: 'center center', 'top center', 'left center', or 'right center' */
+        object-position: center center; 
+      }
+      
+      /* ... your existing mobile styles ... */
     }
 
     /* Cursive Title at Top Left */
