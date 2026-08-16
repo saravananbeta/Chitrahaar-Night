@@ -415,81 +415,92 @@
     ];
 
     // Correctly set initial index to a random position within the array bounds
-    var playlistLength = typeof playlist !== 'undefined' ? playlist.length : 100;
-    let currentIndex = Math.floor(Math.random() * playlistLength);
-    let ytPlayer;
+   var playlistLength = typeof playlist !== 'undefined' ? playlist.length : 100;
+let currentIndex = Math.floor(Math.random() * playlistLength);
+let ytPlayer;
+let isAudioMuted = true; // State tracker
 
-    function onYouTubeIframeAPIReady() {
-      ytPlayer = new YT.Player('player', {
-        height: '1',
-        width: '1',
-        videoId: playlist[currentIndex],
-        playerVars: { 
-          'autoplay': 1,      
-          'mute': 1,          
-          'controls': 0,
-          'playsinline': 1
-        },
-        events: {
-          'onReady': function(event) {
-            event.target.loadVideoById(playlist[currentIndex]);
-            updateMuteUI(); 
-            updateUI(event);
-          },
-          'onStateChange': onPlayerStateChange,
-          'onError': onPlayerError
+function onYouTubeIframeAPIReady() {
+  ytPlayer = new YT.Player('player', {
+    height: '1',
+    width: '1',
+    videoId: playlist[currentIndex],
+    playerVars: { 
+      'autoplay': 1,      
+      'mute': 1,          
+      'controls': 0,
+      'playsinline': 1
+    },
+    events: {
+      'onReady': function(event) {
+        if (isAudioMuted) {
+          event.target.mute();
+        } else {
+          event.target.unMute();
+          event.target.setVolume(100);
         }
-      });
+        event.target.loadVideoById(playlist[currentIndex]);
+        updateMuteUI(); 
+        updateUI(event);
+      },
+      'onStateChange': onPlayerStateChange,
+      'onError': onPlayerError
     }
-   // Global click listener to unmute on first user interaction
-document.addEventListener('click', function unmuteAudio() {
-  if (ytPlayer && typeof ytPlayer.unMute === 'function') {
-    ytPlayer.unMute();
-    ytPlayer.setVolume(100);
+  });
+}
+
+// Global listener: Unmute on first click anywhere outside the mute button
+document.addEventListener('click', function unmuteOnFirstClick(e) {
+  if (e.target.closest('#muteBtn')) return; // Let the button handler manage its own click
+
+  if (isAudioMuted) {
     isAudioMuted = false;
+    if (ytPlayer && typeof ytPlayer.unMute === 'function') {
+      ytPlayer.unMute();
+      ytPlayer.setVolume(100);
+    }
     updateMuteUI();
   }
 }, { once: true });
 
-// Bind click listener for manual mute toggle
+// Dedicated Mute/Unmute Button Handler
 document.addEventListener('DOMContentLoaded', function() {
   const muteBtn = document.getElementById('muteBtn');
   if (muteBtn) {
-    muteBtn.addEventListener('click', function(e) {
-      e.stopPropagation(); // Prevents document click from firing simultaneously
-      if (!ytPlayer) return;
+    muteBtn.addEventListener('click', function() {
+      isAudioMuted = !isAudioMuted;
 
-      if (isAudioMuted) {
-        ytPlayer.unMute();
-        ytPlayer.setVolume(100);
-        isAudioMuted = false;
-      } else {
-        ytPlayer.mute();
-        isAudioMuted = true;
+      if (ytPlayer && typeof ytPlayer.unMute === 'function') {
+        if (isAudioMuted) {
+          ytPlayer.mute();
+        } else {
+          ytPlayer.unMute();
+          ytPlayer.setVolume(100);
+        }
       }
       updateMuteUI();
     });
   }
 });
 
-// Render icon based on explicit state variable
+// Sync icon strictly based on state variable
 function updateMuteUI() {
   const muteIcon = document.getElementById('muteIcon');
   const muteBtn = document.getElementById('muteBtn');
   if (!muteIcon) return;
 
   if (isAudioMuted) {
-    muteIcon.textContent = '🔇'; // Displayed when MUTED (no sound)
+    muteIcon.textContent = '🔇'; // MUTED
     if (muteBtn) muteBtn.classList.add('is-muted');
   } else {
-    muteIcon.textContent = '🔊'; // Displayed when UNMUTED (sound playing)
+    muteIcon.textContent = '🔊'; // UNMUTED
     if (muteBtn) muteBtn.classList.remove('is-muted');
   }
 }
-    // Fix for soft refreshes: If YouTube script is already cached, call setup immediately
-    if (window.YT && window.YT.Player) {
-      onYouTubeIframeAPIReady();
-    }
+
+if (window.YT && window.YT.Player) {
+  onYouTubeIframeAPIReady();
+}
     
     function updateUI() {
       const id = playlist[currentIndex];
