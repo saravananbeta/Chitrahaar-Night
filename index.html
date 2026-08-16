@@ -589,40 +589,39 @@ if (window.YT && window.YT.Player) {
 
     function triggerButtonHighlight(btn) {
   if (!btn || !(btn instanceof HTMLElement)) return;
-  
-  // Clear running timer if tapped repeatedly
-  if (btn._highlightTimer) {
-    clearTimeout(btn._highlightTimer);
-  }
 
   btn.classList.add('flash-active');
-  
-  btn._highlightTimer = setTimeout(function() {
+
+  setTimeout(function() {
     btn.classList.remove('flash-active');
-    btn.blur(); // Drop native mobile focus
+    btn.blur();
   }, 1000);
 }
-    // Replace your existing nextTrack function
-    function nextTrack(btn) {
-      triggerButtonHighlight(btn);
-      currentIndex = (currentIndex + 1) % playlist.length;
-      loadCurrentTrack();
-    }
 
-    // Replace your existing prevTrack function
-    function prevTrack(btn) {
-      triggerButtonHighlight(btn);
-      currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
-      loadCurrentTrack();
-    }
+function nextTrack(e) {
+  const btn = (e && e.currentTarget) ? e.currentTarget : (e instanceof HTMLElement ? e : null);
+  triggerButtonHighlight(btn);
+  currentIndex = (currentIndex + 1) % playlist.length;
+  loadCurrentTrack();
+}
 
-    function loadCurrentTrack() {
-      if (ytPlayer && ytPlayer.loadVideoById) {
-        ytPlayer.loadVideoById(playlist[currentIndex]);
-      }
-      updateUI();
-    }
+function prevTrack(e) {
+  const btn = (e && e.currentTarget) ? e.currentTarget : (e instanceof HTMLElement ? e : null);
+  triggerButtonHighlight(btn);
+  currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+  loadCurrentTrack();
+}
 
+// Automatically bind touch-blur handlers to all control buttons on mobile load
+document.addEventListener('DOMContentLoaded', function() {
+  const buttons = document.querySelectorAll('.controls button');
+  buttons.forEach(function(btn) {
+    btn.addEventListener('touchend', function() {
+      // Strips touch focus immediately when finger leaves screen
+      setTimeout(() => btn.blur(), 50);
+    });
+  });
+});
     function setVolume(val) {
       if (ytPlayer && ytPlayer.setVolume) {
         ytPlayer.setVolume(val);
