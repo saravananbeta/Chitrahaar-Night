@@ -597,54 +597,53 @@ if (window.YT && window.YT.Player) {
       }
     }
 
-    function triggerButtonHighlight(btn) {
+   // Flash animation handler
+function flashButton(btn) {
   if (!btn || !(btn instanceof HTMLElement)) return;
 
-  // Restart animation cleanly if clicked repeatedly
-  btn.classList.remove('flash-active');
-  void btn.offsetWidth; // Trigger DOM reflow
-  btn.classList.add('flash-active');
+  // Clear any existing timer
+  if (btn._timer) clearTimeout(btn._timer);
 
-  // Automatically clean up class when keyframe animation ends
-  btn.addEventListener('animationend', function handleAnimEnd() {
-    btn.classList.remove('flash-active');
+  btn.classList.add('is-pressed');
+
+  btn._timer = setTimeout(function() {
+    btn.classList.remove('is-pressed');
     btn.blur();
-    btn.removeEventListener('animationend', handleAnimEnd);
-  });
+    if (document.activeElement) {
+      document.activeElement.blur();
+    }
+  }, 1000);
 }
 
 function nextTrack(e) {
-  const btn = e ? (e.currentTarget || e.target || e) : null;
-  triggerButtonHighlight(btn);
+  if (e && e.preventDefault) e.preventDefault();
+  const btn = e ? (e.currentTarget || e.target) : null;
+  flashButton(btn);
 
   currentIndex = (currentIndex + 1) % playlist.length;
-  updateTrackUI();
+  renderTrackChange();
 }
 
 function prevTrack(e) {
-  const btn = e ? (e.currentTarget || e.target || e) : null;
-  triggerButtonHighlight(btn);
+  if (e && e.preventDefault) e.preventDefault();
+  const btn = e ? (e.currentTarget || e.target) : null;
+  flashButton(btn);
 
   currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
-  updateTrackUI();
+  renderTrackChange();
 }
 
-// Master function to handle both video playback and UI text update
-function updateTrackUI() {
-  // 1. Load the new track into YouTube player
+function renderTrackChange() {
+  // 1. Play new video in YouTube Iframe API
   if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
     ytPlayer.loadVideoById(playlist[currentIndex]);
   }
 
-  // 2. Update the track display text on screen
-  if (typeof updateTrackDisplay === 'function') {
-    updateTrackDisplay(); // Calls existing display updater if present
-  } else {
-    // Direct DOM fallback if you have a track number element (e.g., #trackNum or #trackInfo)
-    const trackElem = document.getElementById('trackNum') || document.getElementById('trackDisplay');
-    if (trackElem) {
-      trackElem.textContent = `Track ${currentIndex + 1} / ${playlist.length}`;
-    }
+  // 2. Update on-screen track text
+  // REPLACE 'trackDisplay' WITH YOUR ACTUAL HTML ELEMENT ID (e.g. 'trackNum', 'info', etc.)
+  const trackElem = document.getElementById('trackDisplay'); 
+  if (trackElem) {
+    trackElem.textContent = `Track ${currentIndex + 1} / ${playlist.length}`;
   }
 }
 // Automatically bind touch-blur handlers to all control buttons on mobile load
