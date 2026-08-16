@@ -102,14 +102,39 @@
       background: rgba(0, 0, 0, 0.85);
     }
 
- .controls button:focus {
-  outline: none;
- }
+ .controls button {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+  -webkit-tap-highlight-color: transparent; /* Prevents default mobile tap outline */
+}
 
- .controls button.active-highlight {
+.controls button:focus {
+  outline: none;
+}
+
+/* Only apply hover on devices with a mouse cursor (Desktop) */
+@media (hover: hover) {
+  .controls button:hover {
+    background: #ffb703;
+    color: #000;
+  }
+}
+
+/* 1-second highlight state for both Mobile and Desktop */
+.controls button.active-highlight {
   background: #ffb703 !important;
   color: #000000 !important;
- }
+}
     /* Minimalist Player Bar Overlay - Expanded Length */
     /* Base Player Bar (Desktop & Laptops) */
 .player-bar {
