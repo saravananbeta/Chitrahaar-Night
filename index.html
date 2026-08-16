@@ -590,13 +590,16 @@ if (window.YT && window.YT.Player) {
     function triggerButtonHighlight(btn) {
   if (!btn || !(btn instanceof HTMLElement)) return;
   
-  // Reset and restart animation if tapped rapidly
-  btn.classList.remove('flash-active');
-  void btn.offsetWidth; // Force DOM reflow
+  // Clear running timer if tapped repeatedly
+  if (btn._highlightTimer) {
+    clearTimeout(btn._highlightTimer);
+  }
+
   btn.classList.add('flash-active');
   
-  setTimeout(function() {
+  btn._highlightTimer = setTimeout(function() {
     btn.classList.remove('flash-active');
+    btn.blur(); // Drop native mobile focus
   }, 1000);
 }
     // Replace your existing nextTrack function
