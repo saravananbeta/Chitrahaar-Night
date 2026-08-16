@@ -600,16 +600,20 @@ if (window.YT && window.YT.Player) {
     function triggerButtonHighlight(btn) {
   if (!btn || !(btn instanceof HTMLElement)) return;
 
+  // Clear previous timer if tapped rapidly
+  if (btn._highlightTimer) {
+    clearTimeout(btn._highlightTimer);
+  }
+
   btn.classList.add('flash-active');
 
-  setTimeout(function() {
+  btn._highlightTimer = setTimeout(function() {
     btn.classList.remove('flash-active');
     btn.blur();
   }, 1000);
 }
 
 function nextTrack(e) {
-  // Safely resolve button element from click event or direct reference
   const btn = e ? (e.currentTarget || e.target || e) : null;
   triggerButtonHighlight(btn);
 
