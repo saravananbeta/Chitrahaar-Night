@@ -231,7 +231,15 @@
       z-index: -1;
     }
     /* Mobile Responsive Enhancements */
+    /* Mobile Responsive Styles */
     @media (max-width: 600px) {
+      .bg-image {
+        object-fit: contain !important;
+        object-position: center center !important;
+        width: 100vw;
+        height: 100vh;
+      }
+
       .app-header {
         top: 15px;
         left: 20px;
@@ -255,21 +263,21 @@
       }
 
       .track-info {
-        max-width: 100px; /* Prevents player from stretching beyond screen width */
+        max-width: 100px;
       }
 
       .volume-container input[type="range"] {
-        width: 45px; /* Compact volume slider for touch targets */
+        width: 45px;
       }
 
       .yt-link-text {
         bottom: 12px;
         right: 50%;
-        transform: translateX(50%); /* Centers link below the player on mobile */
+        transform: translateX(50%);
         font-size: 0.75rem;
         white-space: nowrap;
       }
-    }
+    }  
   </style>
 </head>
 <body>
