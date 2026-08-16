@@ -441,61 +441,48 @@
         }
       });
     }
-   // Swapped icon assignments to match visual state
-    function updateMuteUI() {
-      const muteIcon = document.getElementById('muteIcon');
-      const muteBtn = document.getElementById('muteBtn');
-      if (!ytPlayer || typeof ytPlayer.isMuted !== 'function' || !muteIcon) return;
+   // Global click listener to unmute on first user interaction
+document.addEventListener('click', function unmuteAudio() {
+  if (ytPlayer && typeof ytPlayer.unMute === 'function') {
+    ytPlayer.unMute();
+    ytPlayer.setVolume(100);
+    isAudioMuted = false;
+    updateMuteUI();
+  }
+}, { once: true });
 
-      // If muted -> Show crossed speaker (🔇)
-      // If playing/unmuted -> Show active speaker (🔊)
-      if (ytPlayer.isMuted()) {
-        muteIcon.textContent = '🔇'; 
-        if (muteBtn) muteBtn.classList.add('is-muted');
-      } else {
-        muteIcon.textContent = '🔊'; 
-        if (muteBtn) muteBtn.classList.remove('is-muted');
-      }
-    }
-    // Automatically unmute audio on the user's very first click/tap anywhere on the page
-    document.addEventListener('click', function unmuteAudio() {
-      if (ytPlayer && typeof ytPlayer.unMute === 'function') {
-        ytPlayer.unMute();
-        ytPlayer.setVolume(100);
-        updateMuteUI();
-      }
-    }, { once: true });
-
-    // Handle mute button clicks safely after DOM loads
+// Bind click listener for manual mute toggle
 document.addEventListener('DOMContentLoaded', function() {
   const muteBtn = document.getElementById('muteBtn');
   if (muteBtn) {
     muteBtn.addEventListener('click', function(e) {
-      e.stopPropagation(); // Prevents conflict with global page-click listener
+      e.stopPropagation(); // Prevents document click from firing simultaneously
       if (!ytPlayer) return;
 
-      if (ytPlayer.isMuted()) {
+      if (isAudioMuted) {
         ytPlayer.unMute();
         ytPlayer.setVolume(100);
+        isAudioMuted = false;
       } else {
         ytPlayer.mute();
+        isAudioMuted = true;
       }
       updateMuteUI();
     });
   }
 });
 
-// Update button icon based on actual player mute state
+// Render icon based on explicit state variable
 function updateMuteUI() {
   const muteIcon = document.getElementById('muteIcon');
   const muteBtn = document.getElementById('muteBtn');
-  if (!ytPlayer || typeof ytPlayer.isMuted !== 'function' || !muteIcon) return;
+  if (!muteIcon) return;
 
-  if (ytPlayer.isMuted()) {
-    muteIcon.textContent = '🔇'; // Speaker with cross line (MUTED)
+  if (isAudioMuted) {
+    muteIcon.textContent = '🔇'; // Displayed when MUTED (no sound)
     if (muteBtn) muteBtn.classList.add('is-muted');
   } else {
-    muteIcon.textContent = '🔊'; // Speaker with sound waves (UNMUTED)
+    muteIcon.textContent = '🔊'; // Displayed when UNMUTED (sound playing)
     if (muteBtn) muteBtn.classList.remove('is-muted');
   }
 }
