@@ -1,0 +1,24 @@
+==================================================
+CHITRAAR NIGHT WEB EXPERIENCE
+==================================================
+
+DIRECTORY STRUCTURE:
+--------------------
+Chitraar-Night/
+│── index.html
+│── style.css
+│── README.txt
+└── chitrahaar-night-background.jpg
+
+HOW TO RUN LOCALLY:
+-------------------
+1. Place your background image file into this directory and ensure it is named:
+   "chitrahaar-night-background.jpg"
+2. Double click "index.html" to open it in any standard browser.
+
+HOW TO DEPLOY TO VERCEL:
+------------------------
+1. Compress/Zip the entire "Chitraar-Night" folder into a single ZIP file.
+2. Go to https://vercel.com/new
+3. Import or drag & drop your folder/repository.
+4. Click Deploy. Your site will be live on a custom .vercel.app domain!
