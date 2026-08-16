@@ -434,6 +434,14 @@ function onYouTubeIframeAPIReady() {
   });
 }
 
+// Automatically unmute audio on the user's very first click/tap anywhere on the page
+document.addEventListener('click', function unmuteAudio() {
+  if (ytPlayer && typeof ytPlayer.unMute === 'function') {
+    ytPlayer.unMute();
+    ytPlayer.setVolume(100);
+  }
+}, { once: true });
+    
 // 2. Fix for soft refreshes: If YouTube script is already cached, call setup immediately
 if (window.YT && window.YT.Player) {
   onYouTubeIframeAPIReady();
