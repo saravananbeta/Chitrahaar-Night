@@ -693,7 +693,8 @@ document.addEventListener('DOMContentLoaded', function() {
       } else if (event.data === YT.PlayerState.PAUSED) {
         btn.innerText = '▶';
       } else if (event.data === YT.PlayerState.ENDED) {
-        nextTrack();
+        currentIndex = Math.floor(Math.random() * playlist.length);
+        renderTrackChange();
       }
     }
 
