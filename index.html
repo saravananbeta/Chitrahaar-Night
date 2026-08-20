@@ -301,7 +301,11 @@
       accent-color: #ffb703;
       cursor: pointer;
     }
-    
+    /* Force Play button to stay dark while playing, even on mobile touch */
+   #playBtn:not(.is-paused) {
+   background: rgba(255, 255, 255, 0.1) !important;
+   color: #ffffff !important;
+   }
     /* Simple Underlined Text Link at Bottom Right Corner */
     .yt-link-text {
       position: fixed;
