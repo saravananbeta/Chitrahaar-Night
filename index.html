@@ -487,6 +487,7 @@
 
     // Correctly set initial index to a random position within the array bounds
    var playlistLength = typeof playlist !== 'undefined' ? playlist.length : 100;
+let isShuffleOn = false;    
 let currentIndex = Math.floor(Math.random() * playlistLength);
 let ytPlayer;
 let isAudioMuted = true; // State tracker
@@ -615,6 +616,17 @@ if (window.YT && window.YT.Player) {
       }
     }
 
+    function toggleShuffle() {
+    isShuffleOn = !isShuffleOn;
+    const btn = document.getElementById('shuffleBtn');
+      if (btn) {
+      if (isShuffleOn) {
+        btn.classList.add('is-active');
+      }   else {
+        btn.classList.remove('is-active');
+      }
+    }
+  }
    // Flash animation handler
 function flashButton(btn) {
   if (!btn || !(btn instanceof HTMLElement)) return;
