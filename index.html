@@ -306,6 +306,11 @@
    background: rgba(255, 255, 255, 0.1) !important;
    color: #ffffff !important;
    }
+
+    #playBtn.is-paused {
+    background: #ffb703 !important;
+    color: #000000 !important;
+   }
     /* Simple Underlined Text Link at Bottom Right Corner */
     .yt-link-text {
       position: fixed;
@@ -721,7 +726,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
 
-    function onPlayerStateChange(event) {
+    /*function onPlayerStateChange(event) {
       const btn = document.getElementById('playBtn');
       if (event.data === YT.PlayerState.PLAYING) {
         btn.innerText = '⏸';
@@ -732,12 +737,46 @@ document.addEventListener('DOMContentLoaded', function() {
         currentIndex = Math.floor(Math.random() * playlist.length);
         renderTrackChange();
       }
-    }
+    }  */
 
-    function onPlayerError(event) {
-      console.warn(`Track ${currentIndex + 1} is unplayable. Skipping...`);
-      nextTrack();
+  // Helper to choose next song based on shuffle state
+function playNextOrRandom() {
+  if (isShuffleOn) {
+    let randomIndex = Math.floor(Math.random() * playlist.length);
+    // Optional: prevent playing the exact same track twice in a row if playlist > 1
+    if (playlist.length > 1 && randomIndex === currentIndex) {
+      randomIndex = (randomIndex + 1) % playlist.length;
     }
+    currentIndex = randomIndex;
+    renderTrackChange();
+  } else {
+    // Normal sequential playback
+    currentIndex = (currentIndex + 1) % playlist.length;
+    renderTrackChange();
+  }
+}
+
+// Update state change handler
+function onPlayerStateChange(event) {
+  const btn = document.getElementById('playBtn');
+  if (event.data === YT.PlayerState.PLAYING) {
+    btn.innerText = '⏸';
+    btn.classList.remove('is-paused');
+    fetchTrackTitle();
+  } else if (event.data === YT.PlayerState.PAUSED) {
+    btn.innerText = '▶';
+    btn.classList.add('is-paused');
+  } else if (event.data === YT.PlayerState.ENDED) {
+    playNextOrRandom(); // Replaces direct Math.random() call
+  }
+}
+
+// Update error handler
+function onPlayerError(event) {
+  console.warn(`Track ${currentIndex + 1} is unplayable. Skipping...`);
+  playNextOrRandom(); // Respects shuffle when a track fails to load
+}
+    
    function updateFakeListeners() {
   // Generates a random integer between 10 and 25 inclusive
   const count = Math.floor(Math.random() * (25 - 10 + 1)) + 10;
