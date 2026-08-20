@@ -352,7 +352,13 @@
       .time-display {
         font-size: 0.85rem;
       }
-      
+      .listener-count {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #ffffff;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+       pointer-events: none;
+    }
     
       .player-bar {
         bottom: 45px;
@@ -398,6 +404,7 @@
   <!-- Digital Time Display & Mute Button at Top Right -->
   <div class="top-right-container">
     <div id="clockDisplay" class="time-display">00:00</div>
+    <div id="listenerCount" class="listener-count">Online: --</div>
     <button id="muteBtn" class="mute-btn" aria-label="Toggle Sound">
       <span id="muteIcon">🔇</span>
     </button>
@@ -709,6 +716,21 @@ document.addEventListener('DOMContentLoaded', function() {
       console.warn(`Track ${currentIndex + 1} is unplayable. Skipping...`);
       nextTrack();
     }
+   function updateFakeListeners() {
+  // Generates a random integer between 10 and 25 inclusive
+  const count = Math.floor(Math.random() * (25 - 10 + 1)) + 10;
+  const countElem = document.getElementById('listenerCount');
+  if (countElem) {
+    countElem.innerText = `Online: ${count}`;
+  }
+}
+
+// Run immediately on load
+updateFakeListeners();
+
+// Refresh count every 30 seconds
+setInterval(updateFakeListeners, 30000);
+    
   </script>
 </body>
 </html>
