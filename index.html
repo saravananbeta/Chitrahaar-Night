@@ -154,6 +154,12 @@
   background: #ffb703 !important;
   color: #000000 !important;
 }
+
+ /* Persistent Shuffle Active Class */
+.controls button.is-active {
+  background: #ffb703 !important;
+  color: #000000 !important;
+}   
     /* Minimalist Player Bar Overlay - Expanded Length */
     /* Base Player Bar (Desktop & Laptops) */
 .player-bar {
@@ -432,7 +438,7 @@
     </div>
 
   <div class="controls">
-  <button onclick="prevTrack(event)" title="Previous">◀◀</button>
+  <button id="shuffleBtn" onclick="toggleShuffle()" title="Shuffle">&#x1F500;&#xFE0E;</button>  
   <button id="playBtn" onclick="togglePlay()" title="Play/Pause">▶</button>
   <button onclick="nextTrack(event)" title="Next">▶▶</button>
   </div>
