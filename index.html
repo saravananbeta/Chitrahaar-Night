@@ -497,7 +497,8 @@
     // Correctly set initial index to a random position within the array bounds
    var playlistLength = typeof playlist !== 'undefined' ? playlist.length : 100;
 let isShuffleOn = false;    
-let currentIndex = Math.floor(Math.random() * playlistLength);
+//let currentIndex = Math.floor(Math.random() * playlistLength); starting with a randon tracj
+let currentIndex = 0;    
 let ytPlayer;
 let isAudioMuted = true; // State tracker
 
