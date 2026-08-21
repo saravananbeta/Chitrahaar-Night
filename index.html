@@ -777,20 +777,30 @@ function onPlayerError(event) {
   playNextOrRandom(); // Respects shuffle when a track fails to load
 }
     
-   function updateFakeListeners() {
-  // Generates a random integer between 10 and 25 inclusive
-  const count = Math.floor(Math.random() * (25 - 10 + 1)) + 10;
+  // Initialize with a random starting count between 10 and 25
+let currentCount = Math.floor(Math.random() * (25 - 10 + 1)) + 10;
+
+function updateFakeListeners() {
   const countElem = document.getElementById('listenerCount');
+  
   if (countElem) {
-    countElem.innerText = `Online: ${count}`;
+    // Update DOM with current count
+    countElem.innerText = `Online: ${currentCount}`;
+    
+    // Generate a delta between -2 and +2
+    const delta = Math.floor(Math.random() * 5) - 2;
+    
+    // Apply delta, ensuring the count doesn't drop below 0
+    currentCount = Math.max(5, currentCount + delta);
   }
 }
 
-// Run immediately on load
+// Run immediately on page load
 updateFakeListeners();
 
-// Refresh count every 30 seconds
-setInterval(updateFakeListeners, 20000);
+// Update every 15 seconds (10000 ms)
+setInterval(updateFakeListeners, 15000);
+
     
   </script>
 </body>
