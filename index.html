@@ -508,7 +508,7 @@
 
     <div class="volume-container">
       <span>🔊</span>
-      <input type="range" id="volumeSlider" min="0" max="100" value="80" oninput="setVolume(this.value)" />
+      <input type="range" id="volumeSlider" min="0" max="100" value="60" oninput="setVolume(this.value)" />
     </div>
   </div>
 
@@ -582,7 +582,7 @@ shufflePlaylist(playlist);
         events: {
           'onReady': function(event) {
             event.target.mute();
-            event.target.setVolume(50);
+            event.target.setVolume(60);
             updateMuteUI();
             updateUI();
           },
@@ -598,7 +598,7 @@ shufflePlaylist(playlist);
         isAudioMuted = false;
         if (ytPlayer && typeof ytPlayer.unMute === 'function') {
           ytPlayer.unMute();
-          ytPlayer.setVolume(100);
+          ytPlayer.setVolume(60);
         }
         updateMuteUI();
       }
@@ -614,7 +614,7 @@ shufflePlaylist(playlist);
               ytPlayer.mute();
             } else {
               ytPlayer.unMute();
-              ytPlayer.setVolume(100);
+              ytPlayer.setVolume(60);
             }
           }
           updateMuteUI();
@@ -781,7 +781,7 @@ shufflePlaylist(playlist);
         initialLoad = false;
         event.target.pauseVideo();
         event.target.unMute();
-        event.target.setVolume(100);
+        event.target.setVolume(60);
         isAudioMuted = false;
         btn.innerText = '▶';
         btn.classList.add('is-paused');
