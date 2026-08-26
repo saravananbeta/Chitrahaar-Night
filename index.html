@@ -514,360 +514,341 @@
   <div id="player" class="audio-engine"></div>
 
   <script src="https://www.youtube.com/iframe_api"></script>
-  <script>
-    function updateClock() {
-      const now = new Date();
-      const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      document.getElementById('clockDisplay').innerText = `${hours}:${minutes}`;
-    }
-    updateClock();
-    setInterval(updateClock, 1000);
-
-    const playlist = [
-      "KleNYs1Y2I0", "BOLYNw3x1lE", "0AwkZihdw6E", "Lx26NZQleQY", "CkHw1q7blWQ", "UgWCnTwSGTg", "0xnp8z2236w", "YWoXm6V5v-A",
-      "nFC7YqKnoKE", "MINo9f1hpz8", "q7iZe8GY8jw", "kf0hRxggFbA", "OJxoJxfSti0", "Zfsmj5zpZ9w", "_9lKgL2ISaY", "3DXeR51OvYg",
-      "-f2wNmTi08c", "ScrOw2UfTJQ", "yYWQbyag7SM", "FIj10mJsgQQ", "BzxcAY4c_R4", "m6PmNval9Q8", "k0NnzaKaHOw", "1CDtCROJ3qU",
-      "20tQCoNVJTE", "h3yQJZagDTw", "AmQHiMk_Qxw", "zG3hw-xkrow", "7ncsLuDynlk", "iOIuZiBltzU", "ehDDcBzIp5w",
-      "Oq6q4HPBc5Q", "CPfiqyl-3_4", "cTvUrpSr9ck", "Y3X8MuobByU", "QCAL-wNyG0A", "MgUi_6UxJFk", "cZH5pnfn1vY", "mhAwMAfmzQQ",
-      "ibikPYmtpLw", "ZUdJQSUcK_Y", "xY2P6IAd0MI", "udiDx_OahDo", "PSn9mLj1Z7k", "ilDBlVtupGE", "eQ6SCo2luTs", "9Eg4d56rt-U",
-      "tvnXH83qn0Q", "ZK0b6481Bhk", "KgPoWxY1Fis", "rOuYZqomAV0", "RmWX6BYYjD0", "V2JR5qMuTVM", "8BiIHtXZ234", "p4H3YvKs-OU",
-      "Mck78aR0wq0", "_SnViWuAU7E", "ZtbHrN8GBhg", "UrApX2yMOnY", "PF-JOx0HIN0", "hxjPGPLoMZQ", "cS6FEpc0z3E", "19-4KLfaLCc",
-      "meif1oIfJ5o", "yVImQoGNdTE", "z3MciUpfYao", "ra4qKFmDFVg", "kGDUpxeZZMg", "NWCG3MUDc0A", "PhkADyPektU", "6db52BxXxfQ",
-      "uUjeJdaliK4", "f2cUaOLsLQU", "32tNhs2Vk8U", "EBKjZaarSl0", "_SAdpFmk3l4", "3A5xez59mrg", "rHsdArEuHvQ", "Cmpzci-zYFU",
-      "YXrqPqDpbjg", "DrAHWIBAiVE", "yXbSZFNBvvE", "YCuhzjK11iA", "zuxaLoz2kLg", "Nqmp8-iD_As", "9dcBy2uXL7E", "dDO9ZRSNB9s",
-      "YJWR_MVFigs", "29W5zv1VlJM", "X5XztxGzNko", "qrNbG2W6IRE", "ycouT7JuZhs", "E1XJkGD-eng", "x9O4_C1evRg", "pAv48xBN2IQ",
-      "ErmowyGS_YE", "bzTBf-l3RQs", "dodq6nT0k4M", "S-z2NTNqZx4", "QgYf6Z9sVQw", "2FfI2vcFB0g", "ftHwrKS2kYI", "RLYy0csJ5vI",
-      "_WQCvtLTsfg", "i5AdRtJNbpM", "DKsmjyMTgBo", "f1Nhozddebo", "Cu2zpXIBWKI", "oYOaMwxlGCM", "VMdpoJoaJ9o", "zQ16T8V-Nsw",
-      "F9yWACZWm8s", "Of-V8ADNVdQ", "pW5bH9-t6JE", "D41sf9G1qRk", "2Nh-snz-Llg", "k82SZZaarSl0", "cIBP6cH5AMU"
-    ];
-/* Fisher-Yates Shuffle algorithm.
- * Mutates the original array in-place, making the changes instantly visible
- * to any other function accessing `playlist`.
- */
-function shufflePlaylist(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    // Pick a random index from 0 to i
-    const j = Math.floor(Math.random() * (i + 1));
-    // Swap elements array[i] and array[j]
-    [array[i], array[j]] = [array[j], array[i]];
+<script>
+  function updateClock() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    document.getElementById('clockDisplay').innerText = `${hours}:${minutes}`;
   }
-}
+  updateClock();
+  setInterval(updateClock, 1000);
 
-// Perform the shuffle
-shufflePlaylist(playlist);
+  const playlist = [
+    "KleNYs1Y2I0", "BOLYNw3x1lE", "0AwkZihdw6E", "Lx26NZQleQY", "CkHw1q7blWQ", "UgWCnTwSGTg", "0xnp8z2236w", "YWoXm6V5v-A",
+    "nFC7YqKnoKE", "MINo9f1hpz8", "q7iZe8GY8jw", "kf0hRxggFbA", "OJxoJxfSti0", "Zfsmj5zpZ9w", "_9lKgL2ISaY", "3DXeR51OvYg",
+    "-f2wNmTi08c", "ScrOw2UfTJQ", "yYWQbyag7SM", "FIj10mJsgQQ", "BzxcAY4c_R4", "m6PmNval9Q8", "k0NnzaKaHOw", "1CDtCROJ3qU",
+    "20tQCoNVJTE", "h3yQJZagDTw", "AmQHiMk_Qxw", "zG3hw-xkrow", "7ncsLuDynlk", "iOIuZiBltzU", "ehDDcBzIp5w",
+    "Oq6q4HPBc5Q", "CPfiqyl-3_4", "cTvUrpSr9ck", "Y3X8MuobByU", "QCAL-wNyG0A", "MgUi_6UxJFk", "cZH5pnfn1vY", "mhAwMAfmzQQ",
+    "ibikPYmtpLw", "ZUdJQSUcK_Y", "xY2P6IAd0MI", "udiDx_OahDo", "PSn9mLj1Z7k", "ilDBlVtupGE", "eQ6SCo2luTs", "9Eg4d56rt-U",
+    "tvnXH83qn0Q", "ZK0b6481Bhk", "KgPoWxY1Fis", "rOuYZqomAV0", "RmWX6BYYjD0", "V2JR5qMuTVM", "8BiIHtXZ234", "p4H3YvKs-OU",
+    "Mck78aR0wq0", "_SnViWuAU7E", "ZtbHrN8GBhg", "UrApX2yMOnY", "PF-JOx0HIN0", "hxjPGPLoMZQ", "cS6FEpc0z3E", "19-4KLfaLCc",
+    "meif1oIfJ5o", "yVImQoGNdTE", "z3MciUpfYao", "ra4qKFmDFVg", "kGDUpxeZZMg", "NWCG3MUDc0A", "PhkADyPektU", "6db52BxXxfQ",
+    "uUjeJdaliK4", "f2cUaOLsLQU", "32tNhs2Vk8U", "EBKjZaarSl0", "_SAdpFmk3l4", "3A5xez59mrg", "rHsdArEuHvQ", "Cmpzci-zYFU",
+    "YXrqPqDpbjg", "DrAHWIBAiVE", "yXbSZFNBvvE", "YCuhzjK11iA", "zuxaLoz2kLg", "Nqmp8-iD_As", "9dcBy2uXL7E", "dDO9ZRSNB9s",
+    "YJWR_MVFigs", "29W5zv1VlJM", "X5XztxGzNko", "qrNbG2W6IRE", "ycouT7JuZhs", "E1XJkGD-eng", "x9O4_C1evRg", "pAv48xBN2IQ",
+    "ErmowyGS_YE", "bzTBf-l3RQs", "dodq6nT0k4M", "S-z2NTNqZx4", "QgYf6Z9sVQw", "2FfI2vcFB0g", "ftHwrKS2kYI", "RLYy0csJ5vI",
+    "_WQCvtLTsfg", "i5AdRtJNbpM", "DKsmjyMTgBo", "f1Nhozddebo", "Cu2zpXIBWKI", "oYOaMwxlGCM", "VMdpoJoaJ9o", "zQ16T8V-Nsw",
+    "F9yWACZWm8s", "Of-V8ADNVdQ", "pW5bH9-t6JE", "D41sf9G1qRk", "2Nh-snz-Llg", "k82SZZaarSl0", "cIBP6cH5AMU"
+  ];
 
-    var playlistLength = typeof playlist !== 'undefined' ? playlist.length : 100;
-    let isShuffleOn = false;    
-    let currentIndex = 0;    
-    let ytPlayer;
-    let isAudioMuted = true;
+  function shufflePlaylist(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
 
-    function onYouTubeIframeAPIReady() {
-      ytPlayer = new YT.Player('player', {
-        height: '1',
-        width: '1',
-        videoId: playlist[currentIndex],
-        playerVars: { 
-          'autoplay': 1,
-          'mute': 1,
-          'controls': 0,
-          'playsinline': 1
-        },
-        events: {
-          'onReady': function(event) {
-            event.target.mute();
-            event.target.setVolume(90);
-            updateMuteUI();
-            updateUI();
-          },
-          'onStateChange': onPlayerStateChange,
-          'onError': onPlayerError
-        }
-      });
-    }    
+  shufflePlaylist(playlist);
 
-    document.addEventListener('click', function unmuteOnFirstClick(e) {
-      if (e.target.closest('#muteBtn')) return;
-      if (isAudioMuted) {
-        isAudioMuted = false;
-        if (ytPlayer && typeof ytPlayer.unMute === 'function') {
-          ytPlayer.unMute();
-          ytPlayer.setVolume(100);
-        }
-        updateMuteUI();
-      }
-    }, { once: true });
+  var playlistLength = typeof playlist !== 'undefined' ? playlist.length : 100;
+  let isShuffleOn = false;    
+  let currentIndex = 0;    
+  let ytPlayer;
+  let isAudioMuted = false;
 
-    document.addEventListener('DOMContentLoaded', function() {
-      const muteBtn = document.getElementById('muteBtn');
-      if (muteBtn) {
-        muteBtn.addEventListener('click', function() {
-          isAudioMuted = !isAudioMuted;
-          if (ytPlayer && typeof ytPlayer.unMute === 'function') {
-            if (isAudioMuted) {
-              ytPlayer.mute();
-            } else {
-              ytPlayer.unMute();
-              ytPlayer.setVolume(100);
-            }
-          }
+  function onYouTubeIframeAPIReady() {
+    ytPlayer = new YT.Player('player', {
+      height: '1',
+      width: '1',
+      videoId: playlist[currentIndex],
+      playerVars: { 
+        'autoplay': 0,
+        'mute': 0,
+        'controls': 0,
+        'playsinline': 1
+      },
+      events: {
+        'onReady': function(event) {
+          event.target.unMute();
+          event.target.setVolume(100);
+          event.target.cueVideoById(playlist[currentIndex]);
           updateMuteUI();
-        });
+          updateUI();
+        },
+        'onStateChange': onPlayerStateChange,
+        'onError': onPlayerError
       }
     });
+  }    
 
-    function updateMuteUI() {
-      const muteIcon = document.getElementById('muteIcon');
-      const muteBtn = document.getElementById('muteBtn');
-      if (!muteIcon) return;
-
-      if (isAudioMuted) {
-        muteIcon.textContent = '🔇';
-        if (muteBtn) muteBtn.classList.add('is-muted');
-      } else {
-        muteIcon.textContent = '🔊';
-        if (muteBtn) muteBtn.classList.remove('is-muted');
+  document.addEventListener('click', function unmuteOnFirstClick(e) {
+    if (e.target.closest('#muteBtn')) return;
+    if (isAudioMuted) {
+      isAudioMuted = false;
+      if (ytPlayer && typeof ytPlayer.unMute === 'function') {
+        ytPlayer.unMute();
+        ytPlayer.setVolume(100);
       }
+      updateMuteUI();
     }
+  }, { once: true });
 
-    if (window.YT && window.YT.Player) {
-      onYouTubeIframeAPIReady();
-    }
-    
-    function updateUI() {
-      const id = playlist[currentIndex];
-      document.getElementById('trackThumb').src = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
-      document.getElementById('trackInput').value = currentIndex + 1;
-      fetchTrackTitle();
-    }
-
-    function fetchTrackTitle() {
-      if (ytPlayer && ytPlayer.getVideoData) {
-        const title = ytPlayer.getVideoData().title;
-        if (title) {
-          document.getElementById('trackTitle').innerText = title;
-          document.getElementById('trackTitle').title = title;
-          return;
+  document.addEventListener('DOMContentLoaded', function() {
+    const muteBtn = document.getElementById('muteBtn');
+    if (muteBtn) {
+      muteBtn.addEventListener('click', function() {
+        isAudioMuted = !isAudioMuted;
+        if (ytPlayer && typeof ytPlayer.unMute === 'function') {
+          if (isAudioMuted) {
+            ytPlayer.mute();
+          } else {
+            ytPlayer.unMute();
+            ytPlayer.setVolume(100);
+          }
         }
+        updateMuteUI();
+      });
+    }
+  });
+
+  function updateMuteUI() {
+    const muteIcon = document.getElementById('muteIcon');
+    const muteBtn = document.getElementById('muteBtn');
+    if (!muteIcon) return;
+
+    if (isAudioMuted) {
+      muteIcon.textContent = '🔇';
+      if (muteBtn) muteBtn.classList.add('is-muted');
+    } else {
+      muteIcon.textContent = '🔊';
+      if (muteBtn) muteBtn.classList.remove('is-muted');
+    }
+  }
+
+  if (window.YT && window.YT.Player) {
+    onYouTubeIframeAPIReady();
+  }
+  
+  function updateUI() {
+    const id = playlist[currentIndex];
+    document.getElementById('trackThumb').src = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+    const trackElem = document.getElementById('trackInput');
+    if (trackElem) trackElem.value = currentIndex + 1;
+    fetchTrackTitle();
+  }
+
+  function fetchTrackTitle() {
+    if (ytPlayer && ytPlayer.getVideoData) {
+      const title = ytPlayer.getVideoData().title;
+      if (title) {
+        document.getElementById('trackTitle').innerText = title;
+        document.getElementById('trackTitle').title = title;
+        return;
       }
-      document.getElementById('trackTitle').innerText = `Track ${currentIndex + 1}`;
+    }
+    document.getElementById('trackTitle').innerText = `Track ${currentIndex + 1}`;
+  }
+
+  function jumpToTrack(val) {
+    let num = parseInt(val, 10);
+    if (isNaN(num)) return;
+
+    if (num < 1) num = 1;
+    if (num > playlist.length) num = playlist.length;
+
+    currentIndex = num - 1;
+    renderTrackChange();
+  }
+
+  function togglePlay() {
+    if (!ytPlayer) return;
+    const state = ytPlayer.getPlayerState();
+    if (state === YT.PlayerState.PLAYING) {
+      ytPlayer.pauseVideo();
+    } else {
+      ytPlayer.playVideo();
+    }
+  }
+
+  function toggleShuffle() {
+    isShuffleOn = !isShuffleOn;
+    const btn = document.getElementById('shuffleBtn');
+    if (btn) {
+      if (isShuffleOn) {
+        btn.classList.add('is-active');
+      } else {
+        btn.classList.remove('is-active');
+      }
+    }
+  }
+
+  function flashButton(btn) {
+    if (!btn || !(btn instanceof HTMLElement)) return;
+    if (btn._timer) clearTimeout(btn._timer);
+    btn.classList.add('is-pressed');
+    btn._timer = setTimeout(function() {
+      btn.classList.remove('is-pressed');
+      btn.blur();
+      if (document.activeElement) {
+        document.activeElement.blur();
+      }
+    }, 1000);
+  }
+
+  function nextTrack(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    const btn = e ? (e.currentTarget || e.target) : null;
+    flashButton(btn);
+    currentIndex = (currentIndex + 1) % playlist.length;
+    renderTrackChange();
+  }
+
+  function prevTrack(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    const btn = e ? (e.currentTarget || e.target) : null;
+    flashButton(btn);
+    currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+    renderTrackChange();
+  }
+
+  function renderTrackChange() {
+    const currentNum = currentIndex + 1;
+    const trackElem = document.getElementById('trackInput') 
+                   || document.querySelector('.trackInput') 
+                   || document.querySelector('[name="trackInput"]');
+
+    if (trackElem) {
+      if ('value' in trackElem) {
+        trackElem.value = currentNum;
+        trackElem.setAttribute('value', currentNum);
+      }
+      trackElem.textContent = currentNum;
     }
 
-    function jumpToTrack(val) {
-      let num = parseInt(val, 10);
-      if (isNaN(num)) return;
+    if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
+      ytPlayer.loadVideoById(playlist[currentIndex]);
+      updateUI();
+    }
+  }
 
-      if (num < 1) num = 1;
-      if (num > playlist.length) num = playlist.length;
+  document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('.controls button');
+    buttons.forEach(function(btn) {
+      btn.addEventListener('touchend', function() {
+        setTimeout(() => btn.blur(), 50);
+      });
+    });
+  });
 
-      currentIndex = num - 1;
+  function setVolume(val) {
+    if (ytPlayer && ytPlayer.setVolume) {
+      ytPlayer.setVolume(val);
+    }
+  }
+
+  function playNextOrRandom() {
+    if (isShuffleOn) {
+      let randomIndex = Math.floor(Math.random() * playlist.length);
+      if (playlist.length > 1 && randomIndex === currentIndex) {
+        randomIndex = (randomIndex + 1) % playlist.length;
+      }
+      currentIndex = randomIndex;
       renderTrackChange();
-    }
-
-    function togglePlay() {
-      if (!ytPlayer) return;
-      const state = ytPlayer.getPlayerState();
-      if (state === YT.PlayerState.PLAYING) {
-        ytPlayer.pauseVideo();
-      } else {
-        ytPlayer.playVideo();
-      }
-    }
-
-    function toggleShuffle() {
-      isShuffleOn = !isShuffleOn;
-      const btn = document.getElementById('shuffleBtn');
-      if (btn) {
-        if (isShuffleOn) {
-          btn.classList.add('is-active');
-        } else {
-          btn.classList.remove('is-active');
-        }
-      }
-    }
-
-    function flashButton(btn) {
-      if (!btn || !(btn instanceof HTMLElement)) return;
-      if (btn._timer) clearTimeout(btn._timer);
-      btn.classList.add('is-pressed');
-      btn._timer = setTimeout(function() {
-        btn.classList.remove('is-pressed');
-        btn.blur();
-        if (document.activeElement) {
-          document.activeElement.blur();
-        }
-      }, 1000);
-    }
-
-    function nextTrack(e) {
-      if (e && e.preventDefault) e.preventDefault();
-      const btn = e ? (e.currentTarget || e.target) : null;
-      flashButton(btn);
+    } else {
       currentIndex = (currentIndex + 1) % playlist.length;
       renderTrackChange();
     }
+  }
 
-    function prevTrack(e) {
-      if (e && e.preventDefault) e.preventDefault();
-      const btn = e ? (e.currentTarget || e.target) : null;
-      flashButton(btn);
-      currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
-      renderTrackChange();
-    }
+  function onPlayerStateChange(event) {
+    const btn = document.getElementById('playBtn');
 
-    function renderTrackChange() {
-      const currentNum = currentIndex + 1;
-      const trackElem = document.getElementById('trackInput') 
-                     || document.querySelector('.trackInput') 
-                     || document.querySelector('[name="trackInput"]');
-
-      if (trackElem) {
-        if ('value' in trackElem) {
-          trackElem.value = currentNum;
-          trackElem.setAttribute('value', currentNum);
-        }
-        trackElem.textContent = currentNum;
-      }
-
-      if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
-        ytPlayer.loadVideoById(playlist[currentIndex]);
-        updateUI();
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-      const buttons = document.querySelectorAll('.controls button');
-      buttons.forEach(function(btn) {
-        btn.addEventListener('touchend', function() {
-          setTimeout(() => btn.blur(), 50);
-        });
-      });
-    });
-
-    function setVolume(val) {
-      if (ytPlayer && ytPlayer.setVolume) {
-        ytPlayer.setVolume(val);
-      }
-    }
-
-    function playNextOrRandom() {
-      if (isShuffleOn) {
-        let randomIndex = Math.floor(Math.random() * playlist.length);
-        if (playlist.length > 1 && randomIndex === currentIndex) {
-          randomIndex = (randomIndex + 1) % playlist.length;
-        }
-        currentIndex = randomIndex;
-        renderTrackChange();
-      } else {
-        currentIndex = (currentIndex + 1) % playlist.length;
-        renderTrackChange();
-      }
-    }
-
-    let initialLoad = true;
-
-    function onPlayerStateChange(event) {
-      const btn = document.getElementById('playBtn');
-
-      if (initialLoad && event.data === YT.PlayerState.PLAYING) {
-        initialLoad = false;
-        event.target.pauseVideo();
-        event.target.unMute();
-        event.target.setVolume(100);
-        isAudioMuted = false;
-        btn.innerText = '▶';
-        btn.classList.add('is-paused');
-        updateMuteUI();
-        updateUI();
-        return;
-      }
-
-      if (event.data === YT.PlayerState.PLAYING) {
-        btn.innerText = '⏸';
-        btn.classList.remove('is-paused');
-        document.getElementById('trackThumb').classList.add('is-playing');
-        fetchTrackTitle();
-      } else if (event.data === YT.PlayerState.PAUSED) {
-        btn.innerText = '▶';
-        btn.classList.add('is-paused');
-        document.getElementById('trackThumb').classList.remove('is-playing');
-      } else if (event.data === YT.PlayerState.ENDED) {
-        playNextOrRandom();
-        document.getElementById('trackThumb').classList.remove('is-playing');
-      }
-    }   
-
-    function onPlayerError(event) {
-      console.warn(`Track ${currentIndex + 1} is unplayable. Skipping...`);
+    if (event.data === YT.PlayerState.PLAYING) {
+      btn.innerText = '⏸';
+      btn.classList.remove('is-paused');
+      document.getElementById('trackThumb').classList.add('is-playing');
+      fetchTrackTitle();
+    } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.CUED) {
+      btn.innerText = '▶';
+      btn.classList.add('is-paused');
+      document.getElementById('trackThumb').classList.remove('is-playing');
+    } else if (event.data === YT.PlayerState.ENDED) {
       playNextOrRandom();
+      document.getElementById('trackThumb').classList.remove('is-playing');
     }
-    
-    let currentCount = Math.floor(Math.random() * (25 - 10 + 1)) + 10;
+  }   
 
-    function updateFakeListeners() {
-      const countElem = document.getElementById('listenerCount');
-      if (countElem) {
-        countElem.innerText = `Online: ${currentCount}`;
-        const delta = Math.floor(Math.random() * 5) - 2;
-        currentCount = Math.max(5, currentCount + delta);
-      }
+  function onPlayerError(event) {
+    console.warn(`Track ${currentIndex + 1} is unplayable. Skipping...`);
+    playNextOrRandom();
+  }
+  
+  let currentCount = Math.floor(Math.random() * (25 - 10 + 1)) + 10;
+
+  function updateFakeListeners() {
+    const countElem = document.getElementById('listenerCount');
+    if (countElem) {
+      countElem.innerText = `Online: ${currentCount}`;
+      const delta = Math.floor(Math.random() * 5) - 2;
+      currentCount = Math.max(5, currentCount + delta);
     }
-    updateFakeListeners();
-    setInterval(updateFakeListeners, 15000);
+  }
+  updateFakeListeners();
+  setInterval(updateFakeListeners, 15000);
 
-    /* Sleep Timer Logic with Live Countdown */
-    let sleepInterval = null;
-    let timeRemaining = 0;
+  /* Sleep Timer Logic with Live Countdown */
+  let sleepInterval = null;
+  let timeRemaining = 0;
 
-    function toggleSleepMenu() {
-      const menu = document.getElementById('sleepMenu');
-      menu.classList.toggle('is-open');
+  function toggleSleepMenu() {
+    const menu = document.getElementById('sleepMenu');
+    menu.classList.toggle('is-open');
+  }
+
+  function setTimer(mins) {
+    const btn = document.getElementById('sleepBtn');
+    document.getElementById('sleepMenu').classList.remove('is-open');
+
+    if (sleepInterval) clearInterval(sleepInterval);
+
+    if (mins === 0) {
+      timeRemaining = 0;
+      btn.innerText = '🌙 Sleep timer';
+      return;
     }
 
-    function setTimer(mins) {
-      const btn = document.getElementById('sleepBtn');
-      document.getElementById('sleepMenu').classList.remove('is-open');
+    timeRemaining = mins * 60;
+    updateTimerDisplay();
 
-      if (sleepInterval) clearInterval(sleepInterval);
+    sleepInterval = setInterval(() => {
+      timeRemaining--;
 
-      if (mins === 0) {
-        timeRemaining = 0;
-        btn.innerText = '🌙 Sleep timer';
-        return;
-      }
-
-      timeRemaining = mins * 60;
-      updateTimerDisplay();
-
-      sleepInterval = setInterval(() => {
-        timeRemaining--;
-
-        if (timeRemaining <= 0) {
-          clearInterval(sleepInterval);
-          if (ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
-            ytPlayer.pauseVideo();
-          }
-          btn.innerText = '🌙 Sleep timer';
-        } else {
-          updateTimerDisplay();
+      if (timeRemaining <= 0) {
+        clearInterval(sleepInterval);
+        if (ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
+          ytPlayer.pauseVideo();
         }
-      }, 1000);
-    }
-
-    function updateTimerDisplay() {
-      const btn = document.getElementById('sleepBtn');
-      const m = Math.floor(timeRemaining / 60);
-      const s = String(timeRemaining % 60).padStart(2, '0');
-      btn.innerText = `⏳ ${m}:${s} left`;
-    }
-
-    document.addEventListener('click', function(e) {
-      const container = document.querySelector('.timer-container');
-      if (container && !container.contains(e.target)) {
-        document.getElementById('sleepMenu').classList.remove('is-open');
+        btn.innerText = '🌙 Sleep timer';
+      } else {
+        updateTimerDisplay();
       }
-    });    
-  </script>
+    }, 1000);
+  }
+
+  function updateTimerDisplay() {
+    const btn = document.getElementById('sleepBtn');
+    const m = Math.floor(timeRemaining / 60);
+    const s = String(timeRemaining % 60).padStart(2, '0');
+    btn.innerText = `⏳ ${m}:${s} left`;
+  }
+
+  document.addEventListener('click', function(e) {
+    const container = document.querySelector('.timer-container');
+    if (container && !container.contains(e.target)) {
+      document.getElementById('sleepMenu').classList.remove('is-open');
+    }
+  });    
+</script>
 </body>
 </html>
