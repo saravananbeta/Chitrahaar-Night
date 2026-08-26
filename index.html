@@ -541,6 +541,21 @@
       "_WQCvtLTsfg", "i5AdRtJNbpM", "DKsmjyMTgBo", "f1Nhozddebo", "Cu2zpXIBWKI", "oYOaMwxlGCM", "VMdpoJoaJ9o", "zQ16T8V-Nsw",
       "F9yWACZWm8s", "Of-V8ADNVdQ", "pW5bH9-t6JE", "D41sf9G1qRk", "2Nh-snz-Llg", "k82SZZaarSl0", "cIBP6cH5AMU"
     ];
+/* Fisher-Yates Shuffle algorithm.
+ * Mutates the original array in-place, making the changes instantly visible
+ * to any other function accessing `playlist`.
+ */
+function shufflePlaylist(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    // Pick a random index from 0 to i
+    const j = Math.floor(Math.random() * (i + 1));
+    // Swap elements array[i] and array[j]
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+// Perform the shuffle
+shufflePlaylist(playlist);
 
     var playlistLength = typeof playlist !== 'undefined' ? playlist.length : 100;
     let isShuffleOn = false;    
