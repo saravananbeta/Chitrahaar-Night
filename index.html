@@ -631,25 +631,40 @@
   }
   
   function updateUI() {
-    const id = playlist[currentIndex];
-    document.getElementById('trackThumb').src = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
-    const trackElem = document.getElementById('trackInput');
-    if (trackElem) trackElem.value = currentIndex + 1;
-    fetchTrackTitle();
-  }
+  const id = playlist[currentIndex];
+  document.getElementById('trackThumb').src = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+  const trackElem = document.getElementById('trackInput');
+  if (trackElem) trackElem.value = currentIndex + 1;
+  fetchTrackTitle();
+}
 
-  function fetchTrackTitle() {
-    if (ytPlayer && ytPlayer.getVideoData) {
-      const title = ytPlayer.getVideoData().title;
-      if (title) {
-        document.getElementById('trackTitle').innerText = title;
-        document.getElementById('trackTitle').title = title;
-        return;
-      }
+function fetchTrackTitle() {
+  // 1. Try reading directly from the YouTube API (works during active playback)
+  if (ytPlayer && typeof ytPlayer.getVideoData === 'function') {
+    const videoData = ytPlayer.getVideoData();
+    if (videoData && videoData.title) {
+      document.getElementById('trackTitle').innerText = videoData.title;
+      document.getElementById('trackTitle').title = videoData.title;
+      return;
     }
-    document.getElementById('trackTitle').innerText = `Track ${currentIndex + 1}`;
   }
 
+  // 2. Fallback for CUED/initial load state: Fetch title via YouTube oEmbed API
+  const currentId = playlist[currentIndex];
+  fetch(`https://noembed.com/embed?url=https://www.youtube.com/watch?v=${currentId}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data && data.title) {
+        document.getElementById('trackTitle').innerText = data.title;
+        document.getElementById('trackTitle').title = data.title;
+      } else {
+        document.getElementById('trackTitle').innerText = `Track ${currentIndex + 1}`;
+      }
+    })
+    .catch(() => {
+      document.getElementById('trackTitle').innerText = `Track ${currentIndex + 1}`;
+    });
+}
   function jumpToTrack(val) {
     let num = parseInt(val, 10);
     if (isNaN(num)) return;
