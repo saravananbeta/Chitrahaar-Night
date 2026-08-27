@@ -496,7 +496,7 @@
    <div class="track-info">
       <span id="trackTitle" class="track-title" title="Track Title">Loading Title...</span>
       <div> 
-      <span id="trackNumber" class="track-sub">Getting.. </span>
+      <span id="trackNumber" class="track-sub">Shuffled </span>
       <span id="trackTotal" class="track-sub"></span>
       </div>
    </div>
@@ -880,7 +880,7 @@ shufflePlaylist(playlist);
       }
     });    
   function getNumbers(){
-document.getElementById('trackTotal').innerText = `${activePlaylist.length}`; 
+document.getElementById('trackTotal').innerText = "TEST"  //`${activePlaylist.length}`; 
 document.getElementById('trackNumber').innerText = `${currentIndex + 1} / `;  
 }
 	  
