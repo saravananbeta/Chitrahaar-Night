@@ -251,6 +251,7 @@
       align-items: center;
       gap: 2px;
       margin-top: 2px;
+	  display: inline-block; /* Keeps them inline while allowing margin/padding adjustments */
     }
 
     .track-input {
@@ -492,11 +493,13 @@
   <div class="player-bar">
     <img id="trackThumb" src="" alt="Thumb" class="thumb" />
     
-    <div class="track-info">
+   <div class="track-info">
       <span id="trackTitle" class="track-title" title="Track Title">Loading Title...</span>
-       <span  class="track-sub">118 songs</span>
-    </div>
-
+      <div> 
+      <span id="trackNumber" class="track-sub"></span>
+      <span id="trackTotal" class="track-sub"></span>
+      </div>
+   </div>
       
 
     <div class="controls">
@@ -800,9 +803,10 @@ shufflePlaylist(playlist);
         btn.classList.add('is-paused');
         document.getElementById('trackThumb').classList.remove('is-playing');
       } else if (event.data === YT.PlayerState.ENDED) {
-        playNextOrRandom();
         document.getElementById('trackThumb').classList.remove('is-playing');
+		playNextOrRandom();  //This line was above the prev line.  
       }
+		getNumbers();
     }   
 
     function onPlayerError(event) {
@@ -875,6 +879,11 @@ shufflePlaylist(playlist);
         document.getElementById('sleepMenu').classList.remove('is-open');
       }
     });    
+  function getNumbers(){
+document.getElementById('trackTotal').innerText = `${activePlaylist.length}`; 
+document.getElementById('trackNumber').innerText = `${currentIndex + 1} / `;  
+}
+	  
   </script>
 </body>
 </html>
