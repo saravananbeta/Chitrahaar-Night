@@ -361,9 +361,16 @@
   color: #000000 !important;
 }
 
-/* 3) Paused State (> appearing): Black text on yellow background (default & hover) */
-  #playBtn.is-paused,
-  #playBtn.is-paused:hover {
+/* 2) Playing State - Hovering (Desktop) & Active Touch (Mobile): Black text on yellow */
+  #playBtn:not(.is-paused):hover,
+  #playBtn:not(.is-paused):active {
+  background: #ffb703 !important;
+  color: #000000 !important;
+}
+/* 3) Paused State (> appearing): Black text on yellow background */
+#playBtn.is-paused,
+#playBtn.is-paused:hover,
+#playBtn.is-paused:active {
   background: #ffb703 !important;
   color: #000000 !important;
 }
@@ -741,6 +748,10 @@
     }
 
     function togglePlay() {
+	 if (!ytPlayer) return;
+
+    const playBtn = document.getElementById('playBtn');
+    if (playBtn) playBtn.blur(); // Prevents sticky yellow focus on mobile after tapping	
       if (!ytPlayer) return;
       const state = ytPlayer.getPlayerState();
       if (state === YT.PlayerState.PLAYING) {
