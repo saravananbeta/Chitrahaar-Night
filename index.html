@@ -589,6 +589,7 @@
     let currentIndex = 0;    
     let ytPlayer;
     let isAudioMuted = true;
+	let shouldPauseAfterLoad = true;
 
     function getActivePlaylist() {
       return isShuffleOn ? shuffledList : originalPlaylist;
@@ -749,6 +750,7 @@
       const activeList = getActivePlaylist();
       currentIndex = (currentIndex - 1 + activeList.length) % activeList.length;
       renderTrackChange();
+	  getNumbers();
     }
 
     /* function renderTrackChange() {
@@ -759,7 +761,7 @@
       }
     } */
 
-	function renderTrackChange() {
+/* function renderTrackChange() {
   const activeList = getActivePlaylist();
 
   if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
@@ -787,7 +789,21 @@
     }
     updateUI();
   }
-}
+} */
+   function renderTrackChange() {
+  const activeList = getActivePlaylist();
+
+  if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
+    // Check if player is paused OR if a pause is already queued from a previous rapid click
+    const state = ytPlayer.getPlayerState ? ytPlayer.getPlayerState() : null;
+    if (state === YT.PlayerState.PAUSED || shouldPauseAfterLoad) {
+      shouldPauseAfterLoad = true;
+    }
+
+    ytPlayer.loadVideoById(activeList[currentIndex]);
+    updateUI();
+  }
+} 
 
     document.addEventListener('DOMContentLoaded', function() {
       const buttons = document.querySelectorAll('.controls button');
