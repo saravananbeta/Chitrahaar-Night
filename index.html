@@ -349,15 +349,24 @@
       cursor: pointer;
     }
 
-    #playBtn:not(.is-paused) {
-      background: rgba(255, 255, 255, 0.1) !important;
-      color: #ffffff !important;
-    }
+    /* 1) Playing State (|| appearing): White text on semi-transparent background */
+  #playBtn:not(.is-paused) {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+}
 
-    #playBtn.is-paused {
-      background: #ffb703 !important;
-      color: #000000 !important;
-    }
+/* 2) Playing & Hovering: Black text on yellow background */
+  #playBtn:not(.is-paused):hover {
+  background: #ffb703 !important;
+  color: #000000 !important;
+}
+
+/* 3) Paused State (> appearing): Black text on yellow background (default & hover) */
+  #playBtn.is-paused,
+  #playBtn.is-paused:hover {
+  background: #ffb703 !important;
+  color: #000000 !important;
+}
 
     .yt-link-text {
       position: fixed;
