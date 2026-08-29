@@ -198,15 +198,18 @@
       transform-origin: bottom center;
     }
 
-    /* Enlarge song title text & container on desktop */
+    /* Constant container width */
     .track-info {
-      max-width: 220px;
-      font-size: 1rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      overflow: hidden;
-    }
+  	width: 220px;          /* Enforces a fixed width */
+	max-width: 220px;
+  	min-width: 220px;
+  	font-size: 1rem;
+  	display: flex;
+  	flex-direction: column;
+ 	justify-content: center;
+  	overflow: hidden;
+  	flex-shrink: 0;        /* Prevents flexbox from shrinking this container */
+	}
 
     /* Enlarge volume slider on desktop */
     .volume-container input[type="range"] {
@@ -234,15 +237,18 @@
       to { transform: rotate(360deg); }
     }
 
-    .track-title {
-      font-size: 0.72rem;
-      font-weight: 500;
-      color: #ffffff;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      line-height: 1.2;
-    }
+    /* Truncate long titles with an ellipsis (...) instead of pushing player elements */
+.track-title {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;        /* Ensures proper block text-overflow handling */
+  width: 100%;
+  line-height: 1.2;
+}
 
     .track-sub {
       color: rgba(255, 255, 255, 0.5);
@@ -457,19 +463,23 @@
       #sleepBtn {
         font-size: 0.75rem;
         padding: 4px 10px;
-	bottom: 95px;
+	    bottom: 95px;
       }
 
-      .player-bar {
-        bottom: 45px;
-        gap: 8px;
-        padding: 6px 12px;
-        max-width: 95vw;
-      }
+	 	.player-bar {
+    	bottom: 45px;
+    	gap: 8px;
+    	padding: 6px 12px;
+    	width: 95vw;          /* Constrains player width inside mobile screen */
+    	max-width: 95vw;
+    	box-sizing: border-box;
+  		}
 
       .track-info {
-        max-width: 100px;
-      }
+    	width: 50px  !important;
+    	max-width: 50px !important;
+    	min-width: 50px !important;
+  		}
 
       .volume-container input[type="range"] {
         width: 45px;
