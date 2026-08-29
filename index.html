@@ -349,31 +349,38 @@
       cursor: pointer;
     }
 
- /* 1) Playing State (|| appearing): White text on semi-transparent background */
+/* 1) Playing State (|| appearing): White text on semi-transparent background (Default, Focus, Active, Hover on Mobile) */
 #playBtn:not(.is-paused),
 #playBtn:not(.is-paused):focus,
-#playBtn:not(.is-paused):focus-visible {
+#playBtn:not(.is-paused):focus-visible,
+#playBtn:not(.is-paused):active {
   background: rgba(255, 255, 255, 0.1) !important;
   color: #ffffff !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
 }
 
-/* 2) Playing & Hovering / Tapping: Black text on yellow background */
-#playBtn:not(.is-paused):hover,
-#playBtn:not(.is-paused):active {
-  background: #ffb703 !important;
-  color: #000000 !important;
+/* 2) Playing State (Desktop Hover Only): Black text on yellow background */
+@media (hover: hover) and (pointer: fine) {
+  #playBtn:not(.is-paused):hover {
+    background: #ffb703 !important;
+    color: #000000 !important;
+  }
 }
 
-/* 3) Paused State (> appearing): Black text on yellow background */
+/* 3) Paused State (> appearing): Black text on yellow background across all states */
 #playBtn.is-paused,
 #playBtn.is-paused:hover,
-#playBtn.is-paused:active,
 #playBtn.is-paused:focus,
-#playBtn.is-paused:focus-visible {
+#playBtn.is-paused:focus-visible,
+#playBtn.is-paused:active {
   background: #ffb703 !important;
   color: #000000 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
 }
-
     .yt-link-text {
       position: fixed;
       bottom: 25px;
