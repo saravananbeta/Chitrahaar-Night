@@ -931,7 +931,7 @@
     initialLoad = false;
     event.target.pauseVideo();
     event.target.unMute();
-    event.target.setVolume(100);
+    event.target.setVolume(60);
     isAudioMuted = false;
     btn.innerText = '▶';
     btn.classList.add('is-paused');
@@ -954,7 +954,6 @@
     btn.innerText = '⏸';
     btn.classList.remove('is-paused');
     document.getElementById('trackThumb').classList.add('is-playing');
-    fetchTrackTitle();
   } else if (event.data === YT.PlayerState.PAUSED) {
     btn.innerText = '▶';
     btn.classList.add('is-paused');
