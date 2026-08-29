@@ -349,28 +349,27 @@
       cursor: pointer;
     }
 
-    /* 1) Playing State (|| appearing): White text on semi-transparent background */
-  #playBtn:not(.is-paused) {
+ /* 1) Playing State (|| appearing): White text on semi-transparent background */
+#playBtn:not(.is-paused),
+#playBtn:not(.is-paused):focus,
+#playBtn:not(.is-paused):focus-visible {
   background: rgba(255, 255, 255, 0.1) !important;
   color: #ffffff !important;
 }
 
-/* 2) Playing & Hovering: Black text on yellow background */
-  #playBtn:not(.is-paused):hover {
+/* 2) Playing & Hovering / Tapping: Black text on yellow background */
+#playBtn:not(.is-paused):hover,
+#playBtn:not(.is-paused):active {
   background: #ffb703 !important;
   color: #000000 !important;
 }
 
-/* 2) Playing State - Hovering (Desktop) & Active Touch (Mobile): Black text on yellow */
-  #playBtn:not(.is-paused):hover,
-  #playBtn:not(.is-paused):active {
-  background: #ffb703 !important;
-  color: #000000 !important;
-}
 /* 3) Paused State (> appearing): Black text on yellow background */
 #playBtn.is-paused,
 #playBtn.is-paused:hover,
-#playBtn.is-paused:active {
+#playBtn.is-paused:active,
+#playBtn.is-paused:focus,
+#playBtn.is-paused:focus-visible {
   background: #ffb703 !important;
   color: #000000 !important;
 }
