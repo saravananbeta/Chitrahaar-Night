@@ -319,14 +319,20 @@
       box-shadow: none !important;
     }
 
-    @media (hover: hover) and (pointer: fine) {
-    .controls button:hover,
+   /* Standard control buttons hover (desktop only) */
+   @media (hover: hover) and (pointer: fine) {
+	   
+   .controls button:hover {
+    background: #ffb703 !important;
+    color: #000000 !important;
+    }
+  
+  /* 2) Playing & Hovering (desktop only): Black text on yellow background */
     #playBtn:not(.is-paused):hover {
     background: #ffb703 !important;
     color: #000000 !important;
-  }
-}
     }
+ }
 
     .controls button.is-pressed,
     .controls button.is-active {
