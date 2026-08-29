@@ -669,7 +669,7 @@
     
     function updateUI() {
       const activeList = getActivePlaylist();
-     // const id = activeList[currentIndex];
+      const id = activeList[currentIndex];
       document.getElementById('trackThumb').src = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
       fetchTrackTitle();
     }
