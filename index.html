@@ -996,6 +996,7 @@ function onPlayerStateChange(event) {
   getNumbers();
 }   
   function advanceToNextTrack() {
+	const activeList = getActivePlaylist();  
 	currentIndex = (currentIndex + 1) % activeList.length;
     renderTrackChange();
   }
