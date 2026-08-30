@@ -991,11 +991,17 @@ function onPlayerStateChange(event) {
 
   } else if (event.data === YT.PlayerState.ENDED) {
     document.getElementById('trackThumb').classList.remove('is-playing');
-    nextTrack(event);
+    advanceToNextTrack();
   }
   getNumbers();
 }   
-  
+  function advanceToNextTrack() {
+    currentIndex++;
+      if (currentIndex >= activePlaylist.length) {
+      currentIndex = 0;
+      }  
+    renderTrackChange();
+  }
     function onPlayerError(event) {
       console.warn(`Track ${currentIndex + 1} is unplayable. Skipping...`);
       playNextOrRandom();
