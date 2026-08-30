@@ -867,7 +867,7 @@
     updateUI();
   }
 } */
-   function renderTrackChange() {
+   /* function renderTrackChange() {
   const activeList = getActivePlaylist();
 
   if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
@@ -880,8 +880,22 @@
     ytPlayer.loadVideoById(activeList[currentIndex]);
     updateUI();
   }
-} 
+} */
+/*  Copied from Ceylone player */
+function renderTrackChange() {
+  const id = activePlaylist[currentIndex];
+  const thumb = document.getElementById('trackThumb');
 
+      if (thumb) {
+        thumb.src = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+      }
+
+      if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
+        ytPlayer.loadVideoById(id);
+      }
+      fetchTrackTitle();
+}
+	  
     document.addEventListener('DOMContentLoaded', function() {
       const buttons = document.querySelectorAll('.controls button');
       buttons.forEach(function(btn) {
@@ -889,7 +903,9 @@
           setTimeout(() => btn.blur(), 50);
         });
       });
-    });
+    });  
+
+	
 
     function setVolume(val) {
       if (ytPlayer && ytPlayer.setVolume) {
