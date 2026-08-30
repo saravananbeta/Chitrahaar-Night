@@ -923,8 +923,6 @@ function renderTrackChange() {
       renderTrackChange();
     } 
 
-    let initialLoad = true;
-
    /* function onPlayerStateChange(event) {
       const btn = document.getElementById('playBtn');
 
@@ -957,29 +955,26 @@ function renderTrackChange() {
       getNumbers();
     }   */
 
-	function onPlayerStateChange(event) {
+	// Pasting from Ceylon player
+let initialLoad = true;
+function onPlayerStateChange(event) {
   const btn = document.getElementById('playBtn');
 
   if (initialLoad && event.data === YT.PlayerState.PLAYING) {
     initialLoad = false;
+
     event.target.pauseVideo();
     event.target.unMute();
-    event.target.setVolume(60);
-    isAudioMuted = false;
-    btn.innerText = '▶';
-    btn.classList.add('is-paused');
-    updateMuteUI();
-    updateUI();
-    return;
-  }
+    event.target.setVolume(100);
 
-  // Intercept playing event if a pause was requested after changing tracks
-  if (shouldPauseAfterLoad && event.data === YT.PlayerState.PLAYING) {
-    shouldPauseAfterLoad = false;
-    event.target.pauseVideo();
+    isAudioMuted = false;
+
     btn.innerText = '▶';
     btn.classList.add('is-paused');
-    document.getElementById('trackThumb').classList.remove('is-playing');
+
+    updateMuteUI();
+    updateUI(event);
+
     return;
   }
 
@@ -987,17 +982,20 @@ function renderTrackChange() {
     btn.innerText = '⏸';
     btn.classList.remove('is-paused');
     document.getElementById('trackThumb').classList.add('is-playing');
+    fetchTrackTitle();
+
   } else if (event.data === YT.PlayerState.PAUSED) {
     btn.innerText = '▶';
     btn.classList.add('is-paused');
     document.getElementById('trackThumb').classList.remove('is-playing');
+
   } else if (event.data === YT.PlayerState.ENDED) {
-    playNextOrRandom();
     document.getElementById('trackThumb').classList.remove('is-playing');
+    advanceToNextTrack();
   }
   getNumbers();
-}  
-
+}   
+  
     function onPlayerError(event) {
       console.warn(`Track ${currentIndex + 1} is unplayable. Skipping...`);
       playNextOrRandom();
