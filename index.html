@@ -996,10 +996,7 @@ function onPlayerStateChange(event) {
   getNumbers();
 }   
   function advanceToNextTrack() {
-    currentIndex++;
-      if (currentIndex >= activePlaylist.length) {
-      currentIndex = 0;
-      }  
+	currentIndex = (currentIndex + 1) % activePlaylist.length;
     renderTrackChange();
   }
     function onPlayerError(event) {
