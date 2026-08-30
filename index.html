@@ -560,6 +560,7 @@
    
     <div class="controls">
       <button id="shuffleBtn" onclick="toggleShuffle()" title="Shuffle">&#x1F500;&#xFE0E;</button>
+	  <button id="prevBtn" onclick="prevTrack(event)" title="Previous">◀◀</button>
       <button id="playBtn" onclick="togglePlay()" title="Play/Pause">▶</button>
       <button onclick="nextTrack(event)" title="Next">▶▶</button>
     </div>
@@ -618,7 +619,7 @@
     let currentIndex = 0;    
     let ytPlayer;
     let isAudioMuted = true;
-	let shouldPauseAfterLoad = true;
+	// let shouldPauseAfterLoad = true;
 
     function getActivePlaylist() {
       return isShuffleOn ? shuffledList : originalPlaylist;
