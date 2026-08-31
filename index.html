@@ -832,6 +832,7 @@
       renderTrackChange();
 	  if (!ytPlayer) return; ytPlayer.pauseVideo();
 	  getNumbers();
+	  setTimeout(() => ytPlayer.playVideo(), 1500);
     }
 
     /* function renderTrackChange() {
