@@ -817,8 +817,9 @@
       const activeList = getActivePlaylist();
       currentIndex = (currentIndex + 1) % activeList.length;
       renderTrackChange();
-	  if (!ytPlayer) return; ytPlayer.pauseVideo();
+	  if (!ytPlayer) return; ytPlayer.pauseVideo();	
 	  getNumbers();
+	  setTimeout(() => ytPlayer.playVideo(), 1500);
     }
 
     function prevTrack(e) {
