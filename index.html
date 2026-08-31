@@ -745,7 +745,8 @@
   // Instantly set fallback text while fetching
  // document.getElementById('trackTitle').innerText = `Loading Track ${currentIndex + 1}...`;
 
-  fetch(`https://noembed.com/embed?dataType=json&url=https://www.youtube.com/watch?v=${videoId}`)
+  //fetch(`https://noembed.com/embed?dataType=json&url=https://www.youtube.com/watch?v=${videoId}`)
+ const oembedUrl = `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`;
     .then(response => response.json())
     .then(data => {
       if (data.title) {
