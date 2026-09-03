@@ -1,0 +1,493 @@
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      background-color: transparent;
+      color: #fff;
+    }
+
+    body {
+      background-color: #000;
+      font-family: sans-serif;
+    }
+
+    /* Fullscreen Background Image */
+    .bg-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover !important;
+      object-position: top center;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Cursive Title at Top Left */
+    .app-header {
+      position: fixed;
+      top: 25px;
+      left: 35px;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .app-header h1 {
+      font-family: 'Great Vibes', 'Brush Script MT', cursive;
+      font-size: 3.4rem;
+      font-weight: 400;
+      color: #ffb703;
+      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.9), 0 0 8px rgba(0, 0, 0, 0.8);
+      line-height: 1;
+    }
+
+    /* Top Right Container for Clock & Mute Button */
+    .top-right-container {
+      position: fixed;
+      top: 25px;
+      right: 35px;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
+    /* Digital Time Display at Top Right */
+    .time-display {
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      color: #ffffff;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+      pointer-events: none;
+    }
+
+    /* Mute Button below Clock */
+    .mute-btn {
+      display: none;
+      background: rgba(0, 0, 0, 0.6);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    .mute-btn:hover {
+      background: rgba(0, 0, 0, 0.85);
+    }
+
+    /* Centered Container for Sleep Timer above the Player */
+    .timer-bar {
+      position: fixed;
+      bottom: 100px; /* Positions button >20px above player bar */
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Sleep Timer Button Styling */
+    #sleepBtn {
+      background: rgba(0, 0, 0, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: #fff;
+      font-size: 0.8rem;
+      padding: 6px 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+      transition: all 0.2s ease;
+    }
+
+    #sleepBtn:hover {
+      color: #ffb703;
+      border-color: #ffb703;
+    }
+
+    /* Sleep Menu Popup Options */
+    .timer-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .sleep-menu {
+      display: none;
+      position: absolute;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 6px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+      flex-direction: column;
+      gap: 4px;
+      min-width: 110px;
+      z-index: 20;
+    }
+
+    .sleep-menu.is-open {
+      display: flex;
+    }
+
+    .sleep-menu button {
+      background: transparent;
+      border: none;
+      color: #fff;
+      padding: 6px 12px;
+      font-size: 0.78rem;
+      border-radius: 6px;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .sleep-menu button:hover {
+      background: #ffb703;
+      color: #000;
+    }
+
+    /* Base Player Bar (Desktop & Laptops) */
+    .player-bar {
+      position: fixed;
+      bottom: 35px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 28px;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      transform-origin: bottom center;
+    }
+
+    /* Constant container width */
+    .track-info {
+  	width: 180px;          /* Enforces a fixed width */
+	max-width: 180px;
+  	min-width: 180px;
+  	font-size: 1rem;
+  	display: flex;
+  	flex-direction: column;
+ 	justify-content: center;
+  	overflow: hidden;
+  	flex-shrink: 0;        /* Prevents flexbox from shrinking this container */
+	}
+
+    /* Enlarge volume slider on desktop */
+    .volume-container input[type="range"] {
+      width: 80px;
+    }
+
+    /* Thumbnail inside the player */
+    .thumb {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid #ffb703;
+      flex-shrink: 0;
+      animation: slowRotate 8s linear infinite;
+      animation-play-state: paused;
+    }
+
+    .thumb.is-playing {
+      animation-play-state: running;
+    }   
+
+    @keyframes slowRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Truncate long titles with an ellipsis (...) instead of pushing player elements */
+.track-title {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;        /* Ensures proper block text-overflow handling */
+  width: 100%;
+  line-height: 1.2;
+}
+
+    .track-sub {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.68rem;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      margin-top: 2px;
+     display: inline-block;
+     vertical-align: middle;
+    }
+
+    .track-input {
+      width: 32px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 4px;
+      color: #ffb703;
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-align: center;
+      outline: none;
+      padding: 0 2px;
+      transition: all 0.2s ease;
+    }
+
+    .track-input:focus {
+      border-color: #ffb703;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .track-input::-webkit-outer-spin-button,
+    .track-input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    .track-input[type=number] {
+      -moz-appearance: textfield;
+    }
+ 
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .controls button {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #ffffff;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s ease, color 0.15s ease;
+      -webkit-tap-highlight-color: transparent !important;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      user-select: none;
+      outline: none !important;
+    }
+
+    .controls button:focus,
+    .controls button:active,
+    .controls button:hover {
+      background: rgba(255, 255, 255, 0.1) !important;
+      color: #ffffff !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+   /* Standard control buttons hover (desktop only) */
+   @media (hover: hover) and (pointer: fine) {
+	   
+   .controls button:hover {
+    background: #ffb703 !important;
+    color: #000000 !important;
+    }
+  
+  /* 2) Playing & Hovering (desktop only): Black text on yellow background */
+    #playBtn:not(.is-paused):hover {
+    background: #ffb703 !important;
+    color: #000000 !important;
+    }
+ }
+
+    .controls button.is-pressed,
+    .controls button.is-active {
+      background: #ffb703 !important;
+      color: #000000 !important;
+    }   
+
+    .volume-container {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      margin-left: 2px;
+      flex-shrink: 0;
+    }
+
+    .volume-container input[type="range"] {
+      width: 60px;
+      accent-color: #ffb703;
+      cursor: pointer;
+    }
+
+/* 1) Playing State (|| appearing): White text on semi-transparent background (Default, Focus, Active, Hover on Mobile) */
+#playBtn:not(.is-paused),
+#playBtn:not(.is-paused):focus,
+#playBtn:not(.is-paused):focus-visible,
+#playBtn:not(.is-paused):active {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #ffffff !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* 2) Playing State (Desktop Hover Only): Black text on yellow background */
+@media (hover: hover) and (pointer: fine) {
+  #playBtn:not(.is-paused):hover {
+    background: #ffb703 !important;
+    color: #000000 !important;
+  }
+}
+
+/* 3) Paused State (> appearing): Black text on yellow background across all states */
+#playBtn.is-paused,
+#playBtn.is-paused:hover,
+#playBtn.is-paused:focus,
+#playBtn.is-paused:focus-visible,
+#playBtn.is-paused:active {
+  background: #ffb703 !important;
+  color: #000000 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+    .yt-link-text {
+      position: fixed;
+      bottom: 25px;
+      right: 35px;
+      z-index: 100;
+      color: #ffb703;
+      text-decoration: underline;
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+      transition: color 0.2s ease;
+    }
+
+    .yt-link-text:hover {
+      color: #ffffff;
+    }
+
+    .audio-engine {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      width: 1px;
+      height: 1px;
+      opacity: 0.01;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* Mobile Responsive Styles */
+    @media (max-width: 600px) {
+      .bg-image {
+        object-fit: cover !important;
+        object-position: bottom left !important;
+        width: 100vw;
+        height: 100vh;
+      }
+
+      .app-header {
+        top: 15px;
+        left: 20px;
+      }
+
+      .app-header h1 {
+        font-size: 2.2rem;
+      }
+
+      .top-right-container {
+        top: 20px;
+        right: 20px;
+      }
+
+      .time-display {
+        font-size: 0.85rem;
+      }
+      #prevBtn {      /* Hide << button in meobile */
+      display: none !important;
+      }
+      .listener-count {
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: #ffffff;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+        pointer-events: none;
+      }
+    
+      .timer-bar {
+        bottom: 95px;
+      }
+
+      #sleepBtn {
+        font-size: 0.75rem;
+        padding: 4px 10px;
+	    bottom: 95px;
+      }
+
+	 	.player-bar {
+    	bottom: 45px;
+    	gap: 8px;
+    	padding: 6px 10px;
+    	width: 98vw;          /* Constrains player width inside mobile screen */
+    	max-width: 98vw;
+    	box-sizing: border-box;
+  		}
+
+      .track-info {
+    	width: 60px;
+    	max-width: 60px;
+    	min-width: 60px;
+  		}
+
+      .volume-container input[type="range"] {
+        width: 60px;
+      }
+
+      .yt-link-text {
+        bottom: 12px;
+        right: 50%;
+        transform: translateX(50%);
+        font-size: 0.75rem;
+        white-space: nowrap;
+      }
+    }  
+
+   /* Force shuffle button to stay yellow when active */
+  #shuffleBtn.is-active,
+  #shuffleBtn.is-active:hover,
+  #shuffleBtn.is-active:focus {
+  background: #ffb703 !important;
+  color: #000000 !important;
+ }
