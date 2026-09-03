@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chitrahaar Night</title>
+  <link rel ="stylesheet" href="style.css">
+
+  
+  <!-- Cursive Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+ 
+</head>
+<body>
+ 
+  <!-- Background Image -->
+  <picture>
+    <source media="(max-width: 600px)" srcset="chitrahaar-mobile-bg.jpg" />
+    <img src="chitrahaar-night-background_Amitabh.jpg" alt="Background" class="bg-image" />
+  </picture>
+
+  <!-- Title -->
+  <header class="app-header">
+    <h1>Chitrahaar Night</h1>
+  </header>
+
+  <!-- Time & Mute -->
+  <div class="top-right-container">
+    <div id="clockDisplay" class="time-display">00:00</div>
+    <div id="listenerCount" class="listener-count">Online: --</div>
+    <button id="muteBtn" class="mute-btn" aria-label="Toggle Sound">
+      <span id="muteIcon">🔇</span>
+    </button>
+  </div>
+
+  <!-- Sleep Timer Bar -->
+  <div class="timer-bar">
+    <div class="timer-container">
+      <div id="sleepMenu" class="sleep-menu">
+        <button onclick="setTimer(30)">30 mins</button>
+        <button onclick="setTimer(45)">45 mins</button>
+        <button onclick="setTimer(60)">60 mins</button>
+        <button onclick="setTimer(0)" style="color: #ff6b6b;">Turn off</button>
+      </div>
+      <button id="sleepBtn" onclick="toggleSleepMenu()">🌙 Sleep timer</button>
+    </div>
+  </div>
+
+  <!-- Radio Player -->
+  <div class="player-bar">
+    <img id="trackThumb" src="" alt="Thumb" class="thumb" />
+  
+   
+     <div class="track-info">
+      <span id="trackTitle" class="track-title" title="Track Title">Loading Title...</span>
+      	<div> 
+      		<span id="trackNumber" class="track-sub"></span>
+     	 	<span id="trackTotal" class="track-sub"></span> 
+      	</div>
+      </div> 
+      
+    <!-- old code  
+   <div class="track-info">
+      <span id="trackTitle" class="track-title" title="Track Title">Loading Title...</span>
+      <span class="track-sub">Shuffled</span>
+    </div>
+    end of oldc ode -->
+   
+    <div class="controls">
+      <button id="shuffleBtn" onclick="toggleShuffle()" title="Shuffle">&#x1F500;&#xFE0E;</button>
+	  <button id="prevBtn" onclick="prevTrack(event)" title="Previous">◀◀</button>
+      <button id="playBtn" onclick="togglePlay()" title="Play/Pause">▶</button>
+      <button onclick="nextTrack(event)" title="Next">▶▶</button>
+    </div>
+
+    <div class="volume-container">
+      <span>🔊</span>
+      <input type="range" id="volumeSlider" min="0" max="100" value="80" oninput="setVolume(this.value)" />
+    </div>
+  </div>
+
+  <a href="https://www.youtube.com/playlist?list=PLLounUW9rgqGDmPxbZBerszf0dBq_M93b" target="_blank" class="yt-link-text" rel="noopener noreferrer">Listen on YouTube</a>
+
+  <div id="player" class="audio-engine"></div>
+
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="playlist.js"></script>
+  <script src="script.js"></script>
+
+  
+ </body>
+</html>
