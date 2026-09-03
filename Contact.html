@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Form</title>
+  
+  <!-- Cursive Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+ <style>
+    body {
+         background-color: #e3f2fd;
+    }
+    form { max-width: 400px; display: grid; gap: 12px; }
+    input, textarea, button { padding: 10px; width: 100%; }
+
+    @media (max-width: 600px) {
+    form { max-width: 270px; display: grid; gap: 12px; }
+    input, textarea, button { padding: 10px; width: 100%; }
+    }  
+  </style>
+
+</head>
+<body>
+Welcome!
+ <form action="https://api.web3forms.com/submit" method="POST">
+   <input type="hidden" name="access_key" value="9483e632-415c-408d-9f54-3564606b99d1">
+   <input type="hidden" name="redirect" value="https://record-player-tamil.vercel.app/thank-you.html">
+   <!-- Other Inputs -->
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Mail ID" required>
+    <textarea name="comment" placeholder="Song/Movie" rows="4" required></textarea>
+    
+    <button type="submit">Send</button>
+    <button type="button" onclick="window.close()">Cancel</button>    
+  </form>
+</body>
+</html>
