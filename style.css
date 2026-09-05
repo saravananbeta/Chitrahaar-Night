@@ -303,14 +303,14 @@
 
     @media (hover: hover) and (pointer: fine) {
       .controls button:hover {
-        background: #ffb703 !important;
+        background:  #ffffff !important;  /* #ffb703 !important; */
         color: #000000 !important;
       }
     }
 
     .controls button.is-pressed,
     .controls button.is-active {
-      background: #ffb703 !important;
+      background:  #ffffff !important;  /* #ffb703 !important; */
       color: #000000 !important;
     }   
 
@@ -324,7 +324,7 @@
 
     .volume-container input[type="range"] {
       width: 70px;
-      accent-color: #ffb703;
+      accent-color: #ffffff; /* #ffb703; */
       cursor: pointer;
     }
 
@@ -341,12 +341,12 @@
 
     @media (hover: hover) and (pointer: fine) {
       #playBtn:not(.is-paused):hover {
-        background: #ffb703 !important;
+        background:  #ffffff !important;  /* #ffb703 !important; */
         color: #000000 !important;
       }
     }
 
-    #playBtn.is-paused,
+  /*  #playBtn.is-paused,
     #playBtn.is-paused:hover,
     #playBtn.is-paused:focus,
     #playBtn.is-paused:focus-visible,
@@ -356,7 +356,7 @@
       outline: none !important;
       box-shadow: none !important;
       -webkit-tap-highlight-color: transparent !important;
-    }
+    }  */
 
     .yt-link-text {
       position: fixed;
