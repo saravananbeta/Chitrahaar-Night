@@ -20,13 +20,20 @@ button, #playBtn, #shuffleBtn, #prevBtn, #nextBtn {
   user-select: none;
   touch-action: manipulation;
   -webkit-touch-callout: none;
+  background: none;          /* or your normal transparent-ish background */
+  border: none;
+  transition: transform 0.15s, opacity 0.2s;	
+}
+button:active, button:focus,
+#playBtn:active, #playBtn:focus {
+  transform: scale(0.92);    /* or opacity: 0.7 */
 }
 
-button:focus, button:active,
+/* button:focus, button:active,
 #playBtn:focus, #playBtn:active {
   outline: none !important;
   background: transparent !important;
-}
+}  */
     * {
       box-sizing: border-box;
       margin: 0;
