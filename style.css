@@ -565,7 +565,7 @@ button:active, #playBtn:active {
 }
 
 #playBtn.is-paused:hover {
-      background: #ffffff;
+      background: #ffffff !important;
       color: #000000 !important;
 }
 
