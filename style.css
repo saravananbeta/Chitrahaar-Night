@@ -348,6 +348,7 @@ button:focus, button:active,
     }
 
   #playBtn:not(.is-paused),
+    #playBtn:not(.is-paused):hover,
     #playBtn:not(.is-paused):focus,
     #playBtn:not(.is-paused):focus-visible,
     #playBtn:not(.is-paused):active {
