@@ -13,27 +13,28 @@ button, #playBtn, #shuffleBtn, #prevBtn, #nextBtn {
   -webkit-tap-highlight-color: transparent !important;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
   -webkit-focus-ring-color: transparent !important;
-  outline: none !important;
-  box-shadow: none !important;          /* removes some residual rings/shadows */
-  background-color: transparent;        /* or your normal background – avoid flashes */
+/*  outline: none !important;
+  box-shadow: none !important;          
+  background-color: transparent;       
   -webkit-user-select: none;
   user-select: none;
   touch-action: manipulation;
   -webkit-touch-callout: none;
-  background: none;          /* or your normal transparent-ish background */
+  background: none;          
   border: none;
-  transition: transform 0.15s, opacity 0.2s;	
-}
-button:active, button:focus,
-#playBtn:active, #playBtn:focus {
-  transform: scale(0.92);    /* or opacity: 0.7 */
+  transition: transform 0.15s, opacity 0.2s; */
 }
 
-/* button:focus, button:active,
+/* button:active, button:focus,
+#playBtn:active, #playBtn:focus {
+  transform: scale(0.92);   
+} */
+
+ button:focus, button:active,
 #playBtn:focus, #playBtn:active {
   outline: none !important;
   background: transparent !important;
-}  */
+}  
     * {
       box-sizing: border-box;
       margin: 0;
