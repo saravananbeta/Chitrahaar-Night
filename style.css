@@ -360,7 +360,10 @@ html, body {
   outline: none !important;
   box-shadow: none !important;
 }
-
+#playBtn i {
+  background: transparent !important;
+  background-color: transparent !important;
+}
     @media (hover: hover) and (pointer: fine) {
       #playBtn:not(.is-paused):hover {
         background:  #ffffff !important;  /* #ffb703 !important; */
