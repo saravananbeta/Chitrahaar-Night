@@ -369,5 +369,3 @@ fetch('data.json')
         document.getElementById('sleepMenu').classList.remove('is-open');
       }
     });    
-
-    document.getElementById('playBtn').addEventListener('click', togglePlay); // Added instead of onclick =togglePlay() in hyml
