@@ -354,19 +354,6 @@ html, body {
   box-shadow: none !important;
 }
 
-#playBtn, #playBtn * {
-  forced-color-adjust: none !important;
-  -webkit-forced-color-adjust: none !important;
-  -webkit-appearance: none !important;
-  appearance: none !important;
-  color-scheme: dark !important;
-}
-
-#playBtn:not(.is-paused) {
-  background-image: none !important;
-  background: rgba(255,255,255,0.1) !important;
-  background-color: rgba(255,255,255,0.1) !important;
-}
 
 #playBtn i {
   background: transparent !important;
@@ -535,7 +522,26 @@ html, body {
         font-size: 0.75rem;
       }	
     }
+ #playBtn, #playBtn * {
+  forced-color-adjust: none !important;
+  -webkit-forced-color-adjust: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  color-scheme: dark !important;
+}
 
+#playBtn:not(.is-paused) {
+  background-image: none !important;
+  background: rgba(255,255,255,0.1) !important;
+  background-color: rgba(255,255,255,0.1) !important;
+}
+
+/* this is the killer - Android paints ::before with accent color */
+#playBtn::before, #playBtn::after,
+#playBtn i::before, #playBtn i::after {
+  background: transparent !important;
+  background-color: transparent !important;
+}
   /* This is the killer - Android paints ::before with accent color */
 #playBtn::before, #playBtn::after,
 #playBtn i::before, #playBtn i::after {
