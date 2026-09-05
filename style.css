@@ -347,7 +347,7 @@ button:focus, button:active,
       cursor: pointer;
     }
 
-  /*  #playBtn:not(.is-paused),
+  #playBtn:not(.is-paused),
     #playBtn:not(.is-paused):focus,
     #playBtn:not(.is-paused):focus-visible,
     #playBtn:not(.is-paused):active {
@@ -356,28 +356,8 @@ button:focus, button:active,
       outline: none !important;
       box-shadow: none !important;
       -webkit-tap-highlight-color: transparent !important;
-    } */
-   /* kill yellow tap on whole page */
-html, body {
-  -webkit-tap-highlight-color: transparent;
-}
-
-#playBtn:not(.is-paused),
-#playBtn:not(.is-paused):focus,
-#playBtn:not(.is-paused):focus-visible,
-#playBtn:not(.is-paused):active {
-  background: rgba(255, 255, 255, 0.1) !important;
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  color: #ffffff !important;
-  outline: none !important;
-  box-shadow: none !important;
-}
-
-
-#playBtn i {
-  background: transparent !important;
-  background-color: transparent !important;
-}
+    } 
+   
     @media (hover: hover) and (pointer: fine) {
       #playBtn:not(.is-paused):hover {
         background:  #ffffff !important;  /* #ffb703 !important; */
@@ -397,6 +377,10 @@ html, body {
       -webkit-tap-highlight-color: transparent !important;
     }
 
+    #playBtn:focus { outline: none; }
+    #playBtn:focus-visible { outline: 2px solid white; }
+    #playBtn:active { filter: brightness(0.9); transform: scale(0.97); }
+    
     .yt-link-text {
       position: fixed;
       right: 35px;
