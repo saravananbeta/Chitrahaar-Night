@@ -1,5 +1,5 @@
 <style>
-
+/*
 *,
 *::before,
 *::after {
@@ -7,7 +7,7 @@
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
   -webkit-focus-ring-color: transparent !important;
   outline: none !important;
-}
+} */
 
 button, #playBtn, #shuffleBtn, #prevBtn, #nextBtn {
   -webkit-tap-highlight-color: transparent !important;
@@ -387,7 +387,6 @@ button:active, #playBtn:active {
     #playBtn.is-paused:focus,
     #playBtn.is-paused:focus-visible,
     #playBtn.is-paused:active {
-       background: #ffffff !important;  
 	   background: rgba(255, 255, 255, 0.1) !important; 
       color: #ffffff !important;
       outline: none !important;
@@ -552,17 +551,17 @@ button:active, #playBtn:active {
   color-scheme: dark !important;
 }
 
-#playBtn:not(.is-paused) {
-  background-image: none !important;
-  background: rgba(255,255,255,0.1) !important;
-  background-color: rgba(255,255,255,0.1) !important;
-}
-
 /* this is the killer - Android paints ::before with accent color */
 #playBtn::before, #playBtn::after,
 #playBtn i::before, #playBtn i::after {
   background: transparent !important;
   background-color: transparent !important;
 }
+
+#playBtn:focus {
+  outline: none !important;
+  background: #ffffff !important;
+  color: #000000 !important;
+}  
 
   </style>
