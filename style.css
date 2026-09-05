@@ -1,16 +1,25 @@
 <style>
-  /* For killing Andoid behaviour of giving yellow highlight to button, Meta ai code */
-/*    * {
+
+*,
+*::before,
+*::after {
   -webkit-tap-highlight-color: transparent !important;
-  -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
-  -webkit-touch-callout: none !important;
-} */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+  -webkit-focus-ring-color: transparent !important;
+  outline: none !important;
+}
 
 button, #playBtn, #shuffleBtn, #prevBtn, #nextBtn {
   -webkit-tap-highlight-color: transparent !important;
-  touch-action: manipulation;
-  user-select: none !important;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+  -webkit-focus-ring-color: transparent !important;
   outline: none !important;
+  box-shadow: none !important;          /* removes some residual rings/shadows */
+  background-color: transparent;        /* or your normal background – avoid flashes */
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
 }
 
 button:focus, button:active,
