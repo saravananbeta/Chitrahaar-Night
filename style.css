@@ -388,7 +388,6 @@ button:active, #playBtn:active {
     #playBtn.is-paused:focus-visible,
     #playBtn.is-paused:active {
        background: #ffffff !important;  
-      color: #000000 !important; 
 	   background: rgba(255, 255, 255, 0.1) !important; 
       color: #ffffff !important;
       outline: none !important;
