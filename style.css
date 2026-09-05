@@ -559,10 +559,15 @@ button:active, #playBtn:active {
   background-color: transparent !important;
 }
 
-#playBtn: hover {
-  outline: none !important;
-  background: #ffffff !important;
-  color: #000000 !important;
-}  
+#playBtn:not(.is-paused):hover {
+      background: #ffffff;
+      color: #000000 !important;
+}
+
+#playBtn.is-paused:hover {
+      background: #ffffff;
+      color: #000000 !important;
+}
+
 
   </style>
