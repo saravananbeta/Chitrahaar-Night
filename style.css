@@ -6,6 +6,8 @@
   -webkit-touch-callout: none !important;
 }
 
+div:focus, div:active { outline: none; }
+
 button, #playBtn, #shuffleBtn, #prevBtn, #nextBtn {
   -webkit-tap-highlight-color: transparent !important;
   touch-action: manipulation;
