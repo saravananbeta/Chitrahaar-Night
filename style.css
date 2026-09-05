@@ -347,7 +347,7 @@ button:focus, button:active,
       cursor: pointer;
     }
 
-  #playBtn:not(.is-paused),
+/*  #playBtn:not(.is-paused),
     #playBtn:not(.is-paused):hover,
     #playBtn:not(.is-paused):focus,
     #playBtn:not(.is-paused):focus-visible,
@@ -361,7 +361,7 @@ button:focus, button:active,
    
     @media (hover: hover) and (pointer: fine) {
       #playBtn:not(.is-paused):hover {
-        background:  #ffffff !important;  /* #ffb703 !important; */
+        background:  #ffffff !important;  /* #ffb703 !important; 
         color: #000000 !important;
       }
     }
@@ -372,13 +372,13 @@ button:focus, button:active,
     #playBtn.is-paused:focus-visible,
     #playBtn.is-paused:active {
       /* background: #ffffff !important;  /* #ffb703 !important; 
-      color: #000000 !important; */
+      color: #000000 !important; 
 	   background: rgba(255, 255, 255, 0.1) !important; 
       color: #ffffff !important;
       outline: none !important;
       box-shadow: none !important;
       -webkit-tap-highlight-color: transparent !important;
-    }
+    }  */
 
     #playBtn:focus { outline: none; }
     #playBtn:focus-visible { outline: 2px solid white; }
