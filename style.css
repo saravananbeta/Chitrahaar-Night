@@ -387,8 +387,9 @@ button:active, #playBtn:active {
     #playBtn.is-paused:focus,
     #playBtn.is-paused:focus-visible,
     #playBtn.is-paused:active {
-	   background: rgba(255, 255, 255, 0.1) !important; 
-      color: #000000 !important;
+	   /* background: rgba(255, 255, 255, 0.1) !important; */
+		 background: rgba(0, 0, 0, 0) !important;
+      color: #ffffff !important;
       outline: none !important;
       box-shadow: none !important;
       -webkit-tap-highlight-color: transparent !important;
