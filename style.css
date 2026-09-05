@@ -1,4 +1,23 @@
 <style>
+  /* For killing Andoid behaviour of giving yellow highlight to button, Meta ai code */
+    * {
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-tap-highlight-color: rgba(0,0,0,0) !important;
+  -webkit-touch-callout: none !important;
+}
+
+button, #playBtn, #shuffleBtn, #prevBtn, #nextBtn {
+  -webkit-tap-highlight-color: transparent !important;
+  touch-action: manipulation;
+  user-select: none !important;
+  outline: none !important;
+}
+
+button:focus, button:active,
+#playBtn:focus, #playBtn:active {
+  outline: none !important;
+  background: transparent !important;
+}
     * {
       box-sizing: border-box;
       margin: 0;
@@ -6,7 +25,7 @@
       background-color: transparent;
       color: #fff;
     }
-
+  /* End of Android behaviour killer */
     body {
       background-color: #000;
       font-family: sans-serif;
