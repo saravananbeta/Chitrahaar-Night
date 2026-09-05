@@ -371,7 +371,7 @@ button:focus, button:active,
     #playBtn.is-paused:focus,
     #playBtn.is-paused:focus-visible,
     #playBtn.is-paused:active {
-      /* background: #ffffff !important;  
+       background: #ffffff !important;  
       color: #000000 !important; 
 	   background: rgba(255, 255, 255, 0.1) !important; 
       color: #ffffff !important;
@@ -528,6 +528,7 @@ button:focus, button:active,
         font-size: 0.75rem;
       }	
     }
+/* Below are unuccessful trials forremovingyellow highlight from button in android */
  #playBtn, #playBtn * {
   forced-color-adjust: none !important;
   -webkit-forced-color-adjust: none !important;
