@@ -527,4 +527,11 @@ html, body {
         font-size: 0.75rem;
       }	
     }
+
+  /* This is the killer - Android paints ::before with accent color */
+#playBtn::before, #playBtn::after,
+#playBtn i::before, #playBtn i::after {
+  background: transparent !important;
+  background-color: transparent !important;
+}
   </style>
