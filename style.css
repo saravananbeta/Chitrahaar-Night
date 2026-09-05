@@ -370,8 +370,10 @@ button:focus, button:active,
     #playBtn.is-paused:focus,
     #playBtn.is-paused:focus-visible,
     #playBtn.is-paused:active {
-      background: #ffffff !important;  /* #ffb703 !important; */
-      color: #000000 !important;
+      /* background: #ffffff !important;  /* #ffb703 !important; 
+      color: #000000 !important; */
+	   background: rgba(255, 255, 255, 0.1) !important; 
+      color: #ffffff !important;
       outline: none !important;
       box-shadow: none !important;
       -webkit-tap-highlight-color: transparent !important;
