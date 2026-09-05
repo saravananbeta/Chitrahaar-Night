@@ -30,8 +30,7 @@ button, #playBtn, #shuffleBtn, #prevBtn, #nextBtn {
   transform: scale(0.92);   
 } */
 
- button:focus, button:active,
-#playBtn:focus, #playBtn:active {
+button:active, #playBtn:active {
   outline: none !important;
   background: transparent !important;
 }  
