@@ -370,4 +370,4 @@ fetch('data.json')
       }
     });    
 
-    function getNumbers(){ return; } 
+    document.getElementById('playBtn').addEventListener('click', togglePlay); // Added instead of onclick =togglePlay() in hyml
