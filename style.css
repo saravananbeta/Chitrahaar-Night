@@ -560,8 +560,8 @@ button:active, #playBtn:active {
 
 #playBtn: hover {
   outline: none !important;
-  background: #ffffff !important;
-  color: #000000 !important;
+  background: #000000 !important;
+  color: #ffffff !important;
 }  
 
   </style>
