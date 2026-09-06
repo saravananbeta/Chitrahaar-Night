@@ -465,11 +465,14 @@
         gap: 6px;
       }
 
-      .controls button {
+      /*  .controls button {
         width: 26px;
         height: 26px;
-      }
-
+      } */
+      .control-btn {
+      width: 26px;
+      height: 26px;
+	  }
       .volume-container input[type="range"] {
         width: 50px;
       }
