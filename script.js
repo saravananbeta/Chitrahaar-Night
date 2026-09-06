@@ -181,6 +181,7 @@ prevBtn.addEventListener('click', (e) => {
   const activeList = getActivePlaylist();
   currentIndex = (currentIndex - 1 + activeList.length) % activeList.length;
   renderTrackChange();
+  if (!ytPlayer) return; ytPlayer.pauseVideo(); setTimeout(() => ytPlayer.playVideo(), 1250);
 });
 
 
@@ -190,6 +191,7 @@ nextBtn.addEventListener('click', (e) => {
   const activeList = getActivePlaylist();
   currentIndex = (currentIndex + 1) % activeList.length;
   renderTrackChange();
+   if (!ytPlayer) return; ytPlayer.pauseVideo(); setTimeout(() => ytPlayer.playVideo(), 1250);
 });
 
 
@@ -199,6 +201,7 @@ shuffleBtn.addEventListener('click', () => {
   shuffleBtn.classList.toggle('active', isShuffleOn);
   console.log('Shuffle:', isShuffleOn);
   renderTrackChange();
+   if (!ytPlayer) return; ytPlayer.pauseVideo(); setTimeout(() => ytPlayer.playVideo(), 1250);
 });
 
 
