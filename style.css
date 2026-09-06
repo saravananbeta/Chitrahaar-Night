@@ -289,18 +289,22 @@
 
   display: grid;
   place-items: center;
-  width: 48px;
-  height: 48px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   border: none;
-  background: none;
+  background: rgba(255, 255, 255, 0.05);
   outline: none !important;
   box-shadow: none !important;
   color: #ffffff;               /* change to your color */
   cursor: pointer;
   transition: transform 0.12s ease, background 0.2s, opacity 0.2s;
 }
-
+.control-btn svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
 
 /* Hover & Active feedback (replaces the orange highlight) */
 .control-btn:hover {
@@ -470,6 +474,13 @@
       width: 30px;
       height: 30px;
 	  }
+
+ .control-btn svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+   }
+	
       .volume-container input[type="range"] {
         width: 50px;
       }
