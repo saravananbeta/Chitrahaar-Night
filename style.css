@@ -365,7 +365,7 @@
       z-index: 100;
       color:  #bababa;  /* #ffb703; */
       text-decoration: none;
-      font-size: 0.65rem;
+      font-size: 0.75rem;
       font-weight: 300;
       text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
       transition: color 0.2s ease;
@@ -475,7 +475,7 @@
       }
 
       .meta-details-row {
-        font-size: 0.6rem;
+        font-size: 0.65rem;
       }
 
 
@@ -485,7 +485,7 @@
         bottom: 18px;
         left: auto;
         transform: none;
-        font-size: 0.75rem;
+        font-size: 0.65rem;
       }
 	   .contact-text {
         position: fixed;
