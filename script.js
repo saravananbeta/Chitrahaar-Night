@@ -36,6 +36,9 @@ fetch('data.json')
     let currentIndex = 0;    
     let ytPlayer;
     let isAudioMuted = true;
+    let toggleTimer = null;
+    let showMovie = false;
+
 
     function getActivePlaylist() {
       return isShuffleOn ? shuffledList : originalPlaylist;
@@ -139,6 +142,7 @@ fetch('data.json')
           if (metaElem) {
             metaElem.innerText = `${track.Singer} • ${track.Year} • ${trackNumber}/${totalTracks} ${shuffleIcon}`;
           }
+		  eraser(videoId);	
         }
       } catch (err) {
         console.error("Error inside fetchTrackTitle:", err);
@@ -414,3 +418,27 @@ function onPlayerStateChange(event) {
         document.getElementById('sleepMenu').classList.remove('is-open');
       }
     });    
+
+ function eraser(videoId) {
+ 
+    const Id = videoId;
+    const track = localPlaylistData[Id];
+    if (!track) return;
+     
+    // 1. Kill old 10s loop if any
+    if (toggleTimer !== null) {
+        clearInterval(toggleTimer);
+    }
+
+    // 2. Reset state and show Title immediately
+    showMovie = false;
+    document.getElementById('trackTitle').innerText = track.Title;
+
+    // 3. Start new loop - toggle every 10 sec
+    toggleTimer = setInterval(() => {
+        showMovie = !showMovie;
+        document.getElementById('trackTitle').innerText = showMovie ? track.Movie : track.Title;
+        //document.getElementById('trackTitle').innerText = showMovie ? 'Movie' : 'Song';
+    }, 5000);
+} 
+
