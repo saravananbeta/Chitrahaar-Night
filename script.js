@@ -441,4 +441,14 @@ function onPlayerStateChange(event) {
         //document.getElementById('trackTitle').innerText = showMovie ? 'Movie' : 'Song';
     }, 5000);
 } 
+// Pause/play toggle by pressing SPACE BAR
+document.addEventListener('keydown', (e) => {
+  // don't trigger if typing in input / textarea
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+  if (e.code === 'Space' || e.key === ' ') {
+    e.preventDefault(); // stop page scroll
+    document.getElementById('playBtn')?.click(); // same as clicking play button
+  }
+});
 
