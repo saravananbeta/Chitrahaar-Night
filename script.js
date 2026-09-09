@@ -75,7 +75,7 @@ fetch('data.json')
     isAudioMuted = false;
     if (ytPlayer && typeof ytPlayer.unMute === 'function') {
       ytPlayer.unMute();
-      setVolume(lastVolume || 80); // was 100
+      setVolume(lastVolume || 80); // was simply 80
     }
     updateMuteUI();
   }
