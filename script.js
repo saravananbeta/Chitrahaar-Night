@@ -346,6 +346,12 @@ function onPlayerStateChange(event) {
     return;
   }
 
+ if (!localStorage.getItem('lockHintShown')) {    /* Pop up */
+  document.getElementById('lockHintPopup').style.display = 'block';
+  new Audio('https://cdn.freesound.org/previews/270/270404_5123851-lq.mp3').play().catch(()=>{});
+  localStorage.setItem('lockHintShown','1');
+}	
+
   // Normal state handling (works with SVG buttons)
   if (event.data === YT.PlayerState.PLAYING) {
     playBtn.classList.add('playing');
