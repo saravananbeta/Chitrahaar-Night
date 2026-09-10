@@ -47,8 +47,8 @@ fetch('data.json')
     function onYouTubeIframeAPIReady() {
       const activeList = getActivePlaylist();
       ytPlayer = new YT.Player('player', {
-        height: '1',
-        width: '1',
+        height: '200',  // was 1
+        width: '200',   // was 1
         videoId: activeList[currentIndex],
         playerVars: { 
           'autoplay': 1,
