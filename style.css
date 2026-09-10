@@ -508,4 +508,5 @@
         font-size: 0.75rem;
       }	
     }
+   #player { position:absolute; left:-9999px; opacity:0.01; pointer-events:none; } /* To play under locked screen */
   </style>
