@@ -182,6 +182,12 @@ fetch('data.json')
   // updateUI() is not really needed here anymore
 });
 
+// Pop up message
+if (!localStorage.getItem('lockHintShown')) {
+  document.getElementById('lockHintPopup').style.display = 'block';
+  new Audio('https://cdn.freesound.org/previews/270/270404_5123851-lq.mp3').play().catch(()=>{});
+  localStorage.setItem('lockHintShown','1');
+}
 
 // Other buttons (add your own logic)
 // Previous
