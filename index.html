@@ -119,9 +119,9 @@
   <script src="script.js"></script>
 
  <!-- Opo up message -->
-<div id="lockHintPopup" style="display:none; position:fixed; inset:0; 
+<div id="lockHintPopup" style="display:none; pointer-events: none; position:fixed; inset:0; 
 	background:rgba(0,0,0,0.8); z-index:9999; place-items:center;" onclick="this.style.display='none'">
-	<div style="background:white;padding:24px;border-radius:16px;text-align:center">You can turn off the screen, I'll play for a while with screen lock on!</div>
+	<div style="background:white;padding:24px;border-radius:16px;text-align:center; display:grid; pointer-events:auto">You can turn off the screen, I'll play for a while with screen lock on!</div>
 </div>	
 </body>
 </html>
