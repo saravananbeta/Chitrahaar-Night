@@ -486,9 +486,9 @@ document.addEventListener('keydown', (e) => {
     document.getElementById('prevBtn')?.click();
   }
 });
-setInterval(() => {   // For keeping player alive under lock screen.
+/* setInterval(() => {   // For keeping player alive under lock screen.
   if (ytPlayer && ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
     ytPlayer.setVolume(ytPlayer.getVolume()); // no-op to keep alive
   }
-}, 25000);
+}, 25000);  */ 
 
