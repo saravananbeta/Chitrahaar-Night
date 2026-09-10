@@ -490,7 +490,6 @@ document.addEventListener('keydown', (e) => {
 window.addEventListener('load', () => {
   if (!localStorage.getItem('lockHintShown')) {
     document.getElementById('lockHintPopup').style.display = 'grid';
-    new Audio('https://cdn.freesound.org/previews/270/270404_5123851-lq.mp3').play().catch(()=>{});
     localStorage.setItem('lockHintShown', '1');
   }
 });
