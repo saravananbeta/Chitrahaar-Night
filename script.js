@@ -486,7 +486,7 @@ document.addEventListener('keydown', (e) => {
     document.getElementById('prevBtn')?.click();
   }
 });
-// Pop up msg
+// Pop up msg ... Not working
 window.addEventListener('load', () => {
   if (!localStorage.getItem('lockHintShown')) {
     document.getElementById('lockHintPopup').style.display = 'grid';
