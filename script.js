@@ -117,6 +117,16 @@ fetch('data.json')
       const id = activeList[currentIndex];
       document.getElementById('trackThumb').src = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
       fetchTrackTitle();
+	 //To play on locked screen
+	 if ('mediaSession' in navigator) {
+  navigator.mediaSession.metadata = new MediaMetadata({
+    title: track.Title,
+    artist: track.Singer,
+    artwork: [{ src: `https://img.youtube.com/vi/${id}/hqdefault.jpg`, sizes: '512x512', type: 'image/jpeg' }]
+  });
+  navigator.mediaSession.setActionHandler('nexttrack', nextTrack);
+  // End of locked screen play section
+}
     }
 
     function fetchTrackTitle() {
