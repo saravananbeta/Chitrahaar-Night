@@ -346,8 +346,6 @@ function onPlayerStateChange(event) {
     return;
   }
 
- document.getElementById('lockHintPopup').style.display = 'grid';  // Pop up msg
-
   // Normal state handling (works with SVG buttons)
   if (event.data === YT.PlayerState.PLAYING) {
     playBtn.classList.add('playing');
@@ -488,9 +486,12 @@ document.addEventListener('keydown', (e) => {
     document.getElementById('prevBtn')?.click();
   }
 });
-/* setInterval(() => {   // For keeping player alive under lock screen.
-  if (ytPlayer && ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
-    ytPlayer.setVolume(ytPlayer.getVolume()); // no-op to keep alive
+// Pop up msg
+window.addEventListener('load', () => {
+  if (!localStorage.getItem('lockHintShown')) {
+    document.getElementById('lockHintPopup').style.display = 'grid';
+    new Audio('https://cdn.freesound.org/previews/270/270404_5123851-lq.mp3').play().catch(()=>{});
+    localStorage.setItem('lockHintShown', '1');
   }
-}, 25000);  */ 
+});
 
